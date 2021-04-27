@@ -4,6 +4,7 @@ com\project\model\ProductForm.class
 com\project\pojo\ProductPojo.class
 com\project\spring\DBConfig.class
 com\project\service\OrderService.class
+com\project\utilities\DataConversionUtil.class
 com\project\dao\OrderItemDao.class
 com\project\spring\WebInitializer.class
 com\project\pojo\OrderItemPojo.class
@@ -28,6 +29,7 @@ com\project\model\InventoryReportData.class
 com\project\service\ReportService.class
 com\project\controller\ReportController.class
 com\project\pojo\InventoryPojo.class
+com\project\utilities\PdfConversionUtil.class
 com\project\dao\BrandDao.class
 com\project\utilities\BarcodeUtil.class
 com\project\model\BrandXmlList.class

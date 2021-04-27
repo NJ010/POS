@@ -15,7 +15,7 @@ function getBrandReport(){
         responseType: 'blob'
      },
 	   success: function(blob) {
-				console.log(blob.size);
+				
       	var link=document.createElement('a');
       	link.href=window.URL.createObjectURL(blob);
       	link.download="BrandReport_" + new Date() + ".pdf";
@@ -52,10 +52,10 @@ function getInventoryReport(){
 function getSalesReport(){
 	var $form = $("#sales-report-form");
 	var json = toJson($form);
-	var check = validateSalesForm(json);
-	if(check) {
+	console.log(json);
+	if(true) {
 		var url = getReportUrl() + "/sales";
-		console.log(url);
+		
 		$.ajax({
 		   url: url,
 		   type: 'POST',
@@ -115,12 +115,11 @@ function validateSalesForm(json) {
 	return true;
 }
 function setDefaultDateValues() {
-	document.getElementById("inputStartDate").defaultValue = "2020-01-01";
-	document.getElementById("inputEndDate").defaultValue = "2020-12-31";
+	document.getElementById("inputStartDate").defaultValue = "2000-01-01";
+	document.getElementById("inputEndDate").defaultValue = "2022-12-31";
 }
 
 function init(){
-	console.log("brand_report init");
 	$('#brand-report').click(getBrandReport);
 	$('#inventory-report').click(getInventoryReport);
 	$('#sales-report').click(getSalesReport);

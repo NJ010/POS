@@ -33,7 +33,7 @@ public class ProductPojo {
 	@ManyToOne(fetch = FetchType.LAZY)
 	
     @JoinColumns({
-        @JoinColumn(name="brand_category", referencedColumnName="id",nullable = false),
+        @JoinColumn(name="brand_category", referencedColumnName="id"),
     })
     private BrandCategoryPojo brandcategory;
 	private String name;

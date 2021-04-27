@@ -23,7 +23,7 @@ public class InventoryPojo {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
-        @JoinColumn(name="product_id", referencedColumnName="id",nullable = false),
+        @JoinColumn(name="product_id", referencedColumnName="id"),
     })
     private ProductPojo product;
 	private int quantity;

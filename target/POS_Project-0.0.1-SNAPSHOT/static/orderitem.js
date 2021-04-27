@@ -90,6 +90,7 @@ function addOrder(event) {
 	}
 
 	var json = JSON.stringify(orderitemList);
+	orderitemList=[];
 	var url = getOrderUrl();
 
 	ajaxQuery(url,'POST',json,function (response) {
@@ -191,8 +192,8 @@ function displayOrdersList(data) {
 	data.reverse();
 	for(var i in data){
 		var e = data[i];
-		var buttonHtml = '<button style="padding: 0;border: none;background: none;" onclick="initializeDropdown(' + e.id + ')"><span class="material-icons">keyboard_arrow_down</span></button>';
-		buttonHtml += '<button style="padding: 0;border: none;background: none;" onclick="deleteOrder(' + e.id + ')"><span class="material-icons" style="color:red">delete</span></button>';
+		var buttonHtml = '<button style="padding: 0;border: none;background: none;" onclick="initializeDropdown(' + e.id + ')"><span class="material-icons style="color:thistle"">keyboard_arrow_down</span></button>';
+		buttonHtml += '<button style="padding: 0;border: none;background: none;" onclick="deleteOrder(' + e.id + ')"><span class="material-icons" style="color:thistle">delete</span></button>';
 		var row = '<tr class="order-header">'
 		+ '<td>' + e.id + '</td>'
 		+ '<td>'  + e.datetime + '</td>'
@@ -269,8 +270,7 @@ function createOrderItemsHtml(data,id) {
 	table.append(thHtml);
 	for(var i in data){
 		var e = data[i];
-		var buttonHtml = '<button style="padding: 0;border: none;background: none;" onclick="deleteOrderItemFromOrderList(' + e.id + ')"><span class="material-icons" style="color:red">delete</span></button>';
-		buttonHtml += '<button style="padding: 0;border: none;background: none;" onclick="displayEditOrderItem(' + e.id + ')"><span class="material-icons" style="color:#CCCC00">edit</span></button>';
+		var buttonHtml = '<button style="padding: 0;border: none;background: none;" onclick="displayEditOrderItem(' + e.id + ')"><span class="material-icons" style="color:thistle">edit</span></button>';
 		var row = '<tr>'
 		+ '<td>' + e.barcode + '</td>'
 		+ '<td>' + e.name + '</td>'

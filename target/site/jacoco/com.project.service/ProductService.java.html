@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POS</a> &gt; <a href="index.source.html" class="el_package">com.project.service</a> &gt; <span class="el_source">ProductService.java</span></div><h1>ProductService.java</h1><pre class="source lang-java linenums">package com.project.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.project.dao.ProductDao;
+import com.project.pojo.ProductPojo;
+import com.project.utilities.BarcodeUtil;
+
+
+
+@Service
+<span class="nc" id="L18">public class ProductService {</span>
+	@Autowired
+	private ProductDao product_dao;
+
+	/* Adding Product Details */
+	@Transactional
+	public void add(ProductPojo p) throws ApiException {
+<span class="nc" id="L25">		check(p);</span>
+<span class="nc" id="L26">		normalize(p);</span>
+<span class="nc" id="L27">		p.setBarcode(BarcodeUtil.randomString(8));</span>
+<span class="nc" id="L28">		product_dao.insert(p);</span>
+<span class="nc" id="L29">	}</span>
+
+	/* Deletion of Product Details by id */
+	@Transactional
+	public void delete(int id) {
+<span class="nc" id="L34">		product_dao.delete(id);</span>
+<span class="nc" id="L35">	}</span>
+
+	/* Fetching of product details by id */
+	@Transactional
+	public ProductPojo get(int id) throws ApiException {
+<span class="nc" id="L40">		ProductPojo p = checkIfExists(id);</span>
+<span class="nc" id="L41">		return p;</span>
+	}
+
+	/* Fetching of product details by barcode */
+	@Transactional
+	public ProductPojo get(String barcode) throws ApiException {
+<span class="nc" id="L47">		ProductPojo p = checkIfExists(barcode);</span>
+<span class="nc" id="L48">		return p;</span>
+	}
+
+	/* Fetching all product details */
+	@Transactional
+	public List&lt;ProductPojo&gt; getAll() {
+<span class="nc" id="L54">		return product_dao.selectAll();</span>
+	}
+
+	/* Getting a map of product details pojos with barcode as key */
+	@Transactional
+	public Map&lt;String, ProductPojo&gt; getAllProductPojosByBarcode() {
+<span class="nc" id="L60">		List&lt;ProductPojo&gt; product_list = getAll();</span>
+<span class="nc" id="L61">		Map&lt;String, ProductPojo&gt; barcode_product = new HashMap&lt;String, ProductPojo&gt;();</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		for (ProductPojo product : product_list) {</span>
+<span class="nc" id="L63">			barcode_product.put(product.getBarcode(), product);</span>
+<span class="nc" id="L64">		}</span>
+<span class="nc" id="L65">		return barcode_product;</span>
+	}
+
+	/* Update of product details */
+	@Transactional(rollbackFor = ApiException.class)
+	public void update(int id, ProductPojo p) throws ApiException {
+<span class="nc" id="L71">		check(p);</span>
+<span class="nc" id="L72">		normalize(p);</span>
+<span class="nc" id="L73">		ProductPojo ex = checkIfExists(id);</span>
+<span class="nc" id="L74">		ex.setBrandCategory(p.getBrandCategory());</span>
+<span class="nc" id="L75">		ex.setMrp(p.getMrp());</span>
+<span class="nc" id="L76">		ex.setName(p.getName());</span>
+<span class="nc" id="L77">		product_dao.update(id,ex);</span>
+<span class="nc" id="L78">	}</span>
+
+	/* Check if product exists with given id */
+	@Transactional(rollbackFor = ApiException.class)
+	public ProductPojo checkIfExists(int id) throws ApiException {
+<span class="nc" id="L83">		ProductPojo p = product_dao.select(id);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		if (p == null) {</span>
+<span class="nc" id="L85">			throw new ApiException(&quot;ProductDetails with given ID does not exist, id: &quot; + id);</span>
+		}
+<span class="nc" id="L87">		return p;</span>
+	}
+
+	/* Check if product exists with given barcode */
+	@Transactional(rollbackFor = ApiException.class)
+	public ProductPojo checkIfExists(String barcode) throws ApiException {
+<span class="nc" id="L93">		ProductPojo p = product_dao.select(barcode);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (p == null) {</span>
+<span class="nc" id="L95">			throw new ApiException(&quot;ProductDetails with given barcode does not exist, barcode: &quot; + barcode);</span>
+		}
+<span class="nc" id="L97">		return p;</span>
+	}
+
+	/* Normalize */
+	protected void normalize(ProductPojo p) {
+<span class="nc" id="L102">		p.setName(p.getName().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="nc" id="L103">		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="nc" id="L104">		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="nc" id="L105">	}</span>
+
+	/* Validate */
+	protected void check(ProductPojo p) throws ApiException {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">		if (p.getName().isEmpty()) {</span>
+<span class="nc" id="L110">			throw new ApiException(&quot;The name of product must not be empty&quot;);</span>
+		}
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		if (p.getMrp() &lt;= 0) {</span>
+<span class="nc" id="L113">			throw new ApiException(&quot;Mrp value should be positive&quot;);</span>
+		}
+<span class="nc" id="L115">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

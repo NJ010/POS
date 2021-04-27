@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BrandService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POS</a> &gt; <a href="index.source.html" class="el_package">com.project.service</a> &gt; <span class="el_source">BrandService.java</span></div><h1>BrandService.java</h1><pre class="source lang-java linenums">package com.project.service;
+
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.dao.BrandDao;
+import com.project.pojo.BrandCategoryPojo;
+
+@Service
+<span class="nc" id="L15">public class BrandService {</span>
+
+	
+	@Autowired
+	private BrandDao brand_dao;
+	
+	@Transactional
+	public void add(BrandCategoryPojo pojo) throws ApiException {
+<span class="nc" id="L23">		normalize(pojo);</span>
+<span class="nc" id="L24">		check(pojo);</span>
+<span class="nc" id="L25">		brand_dao.insert(pojo);</span>
+<span class="nc" id="L26">	}</span>
+	
+	
+	
+	@Transactional(rollbackOn = ApiException.class)
+	public BrandCategoryPojo get(int id) throws ApiException {
+<span class="nc" id="L32">		BrandCategoryPojo p = checkIfExist(id);</span>
+<span class="nc" id="L33">		return p;</span>
+	}
+	
+	//Fetching all brands 
+	@Transactional(rollbackOn = ApiException.class)
+	public List&lt;BrandCategoryPojo&gt; getAll() {
+<span class="nc" id="L39">		return brand_dao.selectAll();</span>
+	}
+	
+	//update brand and category
+	@Transactional(rollbackOn = ApiException.class)
+	public void update(int id, BrandCategoryPojo pojo) throws ApiException {
+<span class="nc" id="L45">		check(pojo);</span>
+<span class="nc" id="L46">		normalize(pojo);</span>
+<span class="nc" id="L47">		BrandCategoryPojo ex = checkIfExist(id);</span>
+<span class="nc" id="L48">		ex.setBrand(pojo.getBrand());</span>
+<span class="nc" id="L49">		ex.setCategory(pojo.getCategory());</span>
+<span class="nc" id="L50">		brand_dao.update(id,pojo);</span>
+<span class="nc" id="L51">	}</span>
+	
+	/* Getting a BrandPojo with particular brand and category */
+	@Transactional(rollbackOn = ApiException.class)
+	public BrandCategoryPojo getBrandPojo(String brand, String category) throws ApiException {
+		
+<span class="nc" id="L57">		List&lt;BrandCategoryPojo&gt; brand_list = brand_dao.selectAllBrandCategory(brand, category);</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		if (brand_list.isEmpty()) {</span>
+<span class="nc" id="L60">			throw new ApiException(&quot;The brand name and category given does not exist &quot; + brand + &quot; &quot; + category);</span>
+		}
+<span class="nc" id="L62">		return brand_list.get(0);</span>
+	}
+
+	
+	//// HELPER FUNCTIONS////////
+	
+	
+	// to normalize according to requirements
+	public void normalize(BrandCategoryPojo pojo) {
+		
+<span class="nc" id="L72">		pojo.setBrand(pojo.getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="nc" id="L73">		pojo.setCategory(pojo.getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+		
+<span class="nc" id="L75">	}</span>
+	
+	// to check if brand and category fields are not empty and also to keep them unique i.e. no duplicates.
+	public void check(BrandCategoryPojo pojo) throws ApiException{
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		if(pojo.getBrand().isEmpty()) {</span>
+<span class="nc" id="L80">			throw new ApiException(&quot;Brand field Should be filled&quot;);</span>
+		}
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		if(pojo.getCategory().isEmpty()) {</span>
+<span class="nc" id="L83">			throw new ApiException(&quot;Category field Should be filled&quot;);</span>
+		}
+<span class="nc" id="L85">		List&lt;BrandCategoryPojo&gt; brand_category_list= brand_dao.selectAllBrandCategory(pojo.getBrand(),pojo.getCategory());</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if(!brand_category_list.isEmpty()) {</span>
+<span class="nc" id="L87">			throw new ApiException(&quot;Brand and Category already exist!!&quot;);</span>
+		}
+		
+		
+<span class="nc" id="L91">	}</span>
+	
+	// check if the id exist in the database or not
+	public BrandCategoryPojo checkIfExist(int id) throws ApiException {
+<span class="nc" id="L95">		BrandCategoryPojo p=brand_dao.select(id);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">		if(p==null) {</span>
+<span class="nc" id="L97">			throw new ApiException(&quot;No brand with this id exist&quot;);</span>
+		}
+		
+<span class="nc" id="L100">		return p;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

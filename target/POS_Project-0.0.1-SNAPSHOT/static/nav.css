@@ -8,11 +8,11 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: teal;
-  color: #333;
+  
   line-height: 1.5;
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
-    font-weight: 800;
+  font-weight: 800;
 }
 ul {
   list-style-type: none;
@@ -89,9 +89,10 @@ nav {
   }
   .links {
     height: auto;
-    padding-bottom: 1rem;
+    
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     
   }
   .links a {
@@ -116,4 +117,20 @@ nav {
     padding-top: 200px;
     justify-content: center ;
 
+}
+
+tr{
+font-family: 'Roboto', sans-serif;
+    background-color: rgba(0,0,0,.05);
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+}
+
+.modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    background-color: cadetblue;
+    flex: 1 1 auto;
+    padding: 1rem;
 }

@@ -200,17 +200,6 @@ function init() {
 	createBrandCategoryList();
 	createInventoryMap();
 	console.log(barcodeList);
-	$(".barcode").autocomplete({
-		minLength:0,
-		source: barcodeList
-	});
-	$(".brand").autocomplete({
-		minLength:0,
-		source: brandList
-	});
-	$(".category").autocomplete({
-		minLength:0,
-		source: categoryList
-	});
+	
 }
 $(document).ready(init);
