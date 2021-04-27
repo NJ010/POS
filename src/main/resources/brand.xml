@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<brands>
+    <brand_item>
+        <brand>a</brand>
+        <category>a</category>
+        <id>2</id>
+    </brand_item>
+    <brand_item>
+        <brand>b</brand>
+        <category>b</category>
+        <id>3</id>
+    </brand_item>
+    <brand_item>
+        <brand>coke</brand>
+        <category>drinks</category>
+        <id>5</id>
+    </brand_item>
+</brands>

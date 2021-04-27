@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
+
+.inline-icon {
+   vertical-align: bottom;
+   font-size: 24px;
+}
+
+.page-heading {
+  font-size: 24px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+#brand-filter, #productdetails-filter, #inventory-filter {
+  height: 36px;
+}
+
+table {
+  word-wrap:break-word;
+  table-layout: fixed;
+}
+
+.order-modal {
+
+}
+
+.col-12{
+	justify-content: space-evenly;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+
+}
+
+.page-heading {
+    font-size: 32px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(0,0,0,.05);
+    font-weight: 600;
+}
+
+.form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.form-inline .form-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 0 0 auto;
+    padding: 1rem;
+    flex: 0 0 auto;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+.table thead th {
+    vertical-align: bottom;
+    color: aliceblue;
+    font-size: 25px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(0,0,0,.05);
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+}
+

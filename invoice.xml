@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <datetime>2021-04-23 21:23</datetime>
+    <item>
+        <id>12</id>
+        <mrp>200.0</mrp>
+        <name>abc</name>
+        <quantity>50</quantity>
+    </item>
+    <item>
+        <id>13</id>
+        <mrp>10.0</mrp>
+        <name>ab</name>
+        <quantity>93</quantity>
+    </item>
+    <order_id>5</order_id>
+    <total>10930.0</total>
+</items>

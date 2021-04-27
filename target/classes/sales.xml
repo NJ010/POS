@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sales_items>
+    <sales_item>
+        <brand>a</brand>
+        <category>a</category>
+        <quantity>11</quantity>
+        <revenue>110.0</revenue>
+    </sales_item>
+</sales_items>

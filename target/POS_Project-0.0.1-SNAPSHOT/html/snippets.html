@@ -1,0 +1,55 @@
+<head th:fragment="name_head">
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="baseUrl" th:attr="content=${baseUrl}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" th:href="@{/static/app.css}">
+<link rel="stylesheet" th:href="@{/static/nav.css}">
+</head>
+
+
+
+<nav th:fragment= "main_nav">
+      <div class="nav-container">
+        <div class="header">
+          <button class="toggleBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <ul class="links">
+          <li>
+            <a th:href="@{/product}">Products</a>
+          </li>
+          <li>
+            <a th:href="@{/brand}">Brands</a>
+          </li>
+          <li>
+            <a th:href="@{/inventory}">Inventory</a>
+          </li>
+          <li>
+            <a th:href="@{/order}">Orders</a>
+          </li>
+          <li>
+            <a th:href="@{/report}">Reports</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div class="row" th:fragment="name_footer">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+	<script th:src="@{/static/papaparse.min.js}"></script>
+  <script th:src="@{/static/jquery-ajax-native.js}"></script>
+	<script th:src="@{/static/file.js}"></script>
+  <script th:src="@{/static/brand_report.js}"></script>
+</div>

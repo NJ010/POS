@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sales_items>
+    <sales_item>
+        <brand>b</brand>
+        <category>bc</category>
+        <quantity>103</quantity>
+        <revenue>1030.0</revenue>
+    </sales_item>
+    <sales_item>
+        <brand>unclechips</brand>
+        <category>chips</category>
+        <quantity>111</quantity>
+        <revenue>2005110.0</revenue>
+    </sales_item>
+</sales_items>
