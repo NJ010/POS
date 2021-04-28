@@ -1,2 +1,5 @@
 com\project\utilities\DataConversionTest.class
-com\project\utilities\TestObjects.class
+com\project\service\BrandServiceTest.class
+com\project\spring\AbstractUnit.class
+com\project\spring\QaConfig.class
+com\project\spring\TestObjects.class

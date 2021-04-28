@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-public class OrderController {
+public class OrderController extends ExceptionalHandler{
 
 	@Autowired
 	private OrderService order_service;

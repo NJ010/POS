@@ -55,12 +55,14 @@ nav {
   transition: all 0.3s linear;
 }
 .links a {
+    
   color: #333;
   font: 1rem;
   text-transform: capitalize;
   display: block;
   padding: 0.5rem 1rem;
   transition: all 0.3s linear;
+  text-decoration: none;
 }
 .links a:hover {
   background: #333;
@@ -134,3 +136,6 @@ font-family: 'Roboto', sans-serif;
     flex: 1 1 auto;
     padding: 1rem;
 }
+
+
+

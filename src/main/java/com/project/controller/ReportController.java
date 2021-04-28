@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-public class ReportController {
+public class ReportController extends ExceptionalHandler{
 
 	@Autowired
 	private ReportService report_service;

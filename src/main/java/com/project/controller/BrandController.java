@@ -1,14 +1,19 @@
 package com.project.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.model.ApiError;
 import com.project.model.BrandData;
 import com.project.model.BrandForm;
 import com.project.pojo.BrandCategoryPojo;
@@ -22,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 @Api
 @RestController
 
-public class BrandController {
+public class BrandController extends ExceptionalHandler {
 	
 	@Autowired
 	private BrandService brand_service;
@@ -57,5 +62,9 @@ public class BrandController {
 		BrandCategoryPojo brand_pojo = DataConversionUtil.convert(f);
 		brand_service.update(id, brand_pojo);
 	}
+	
+	
+	
+	
 
 }

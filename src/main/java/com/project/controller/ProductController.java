@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-public class ProductController {
+public class ProductController extends ExceptionalHandler{
 
 
 	@Autowired

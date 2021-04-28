@@ -11,7 +11,7 @@ import com.project.dao.InventoryDao;
 import com.project.pojo.InventoryPojo;
 
 @Service
-<span class="nc" id="L14">public class InventoryService {</span>
+<span class="fc" id="L14">public class InventoryService {</span>
 
 	@Autowired
 	private InventoryDao inventory_dao;
@@ -19,80 +19,80 @@ import com.project.pojo.InventoryPojo;
 	// Adding Inventory 
 	@Transactional
 	public void add(InventoryPojo pojo) throws ApiException {
-<span class="nc" id="L22">		check(pojo);</span>
-<span class="nc" id="L23">		List&lt;InventoryPojo&gt; pojo_list= checkIfBarcodePresent(pojo);</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">		if(pojo_list.size()&gt;0) {</span>
-<span class="nc" id="L25">			inventory_dao.updatequantity(pojo_list.get(0), pojo);</span>
-		}
+<span class="fc" id="L22">		check(pojo);</span>
+<span class="fc" id="L23">		List&lt;InventoryPojo&gt; pojo_list= checkIfBarcodePresent(pojo);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		if(pojo_list.size()&gt;0) {</span>
+<span class="fc" id="L25">			inventory_dao.updatequantity(pojo_list.get(0).getId(), pojo);</span>
+<span class="fc" id="L26">		}</span>
 		else {
-<span class="nc" id="L28">			inventory_dao.insert(pojo);</span>
+<span class="fc" id="L28">			inventory_dao.insert(pojo);</span>
 		}
-<span class="nc" id="L30">	}</span>
+<span class="fc" id="L30">	}</span>
 
 	// Deletion of inventory by id 
 	@Transactional
 	public void delete(int id) {
-<span class="nc" id="L35">		inventory_dao.delete(id);</span>
-<span class="nc" id="L36">	}</span>
+<span class="fc" id="L35">		inventory_dao.delete(id);</span>
+<span class="fc" id="L36">	}</span>
 
 	// Fetch inventory by id 
 	@Transactional
 	public InventoryPojo get(int id) throws ApiException {
-<span class="nc" id="L41">		InventoryPojo pojo = checkIfExists(id);</span>
-<span class="nc" id="L42">		return pojo;</span>
+<span class="fc" id="L41">		InventoryPojo pojo = checkIfExists(id);</span>
+<span class="fc" id="L42">		return pojo;</span>
 	}
 
 	//Fetch inventory by product id 
 	@Transactional
 	public InventoryPojo getByProductId(int product_id) throws ApiException {
-<span class="nc" id="L48">		List&lt;InventoryPojo&gt; lis = getAll();</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">		for (InventoryPojo ip : lis) {</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">			if (ip.getProduct().getId() == product_id) {</span>
-<span class="nc" id="L51">				return ip;</span>
+<span class="fc" id="L48">		List&lt;InventoryPojo&gt; lis = getAll();</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		for (InventoryPojo ip : lis) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">			if (ip.getProduct().getId() == product_id) {</span>
+<span class="fc" id="L51">				return ip;</span>
 			}
-<span class="nc" id="L53">		}</span>
+		}
 <span class="nc" id="L54">		throw new ApiException(&quot;No product with this id exist&quot;);</span>
 	}
 
 	// Fetch all inventory pojos
 	@Transactional
 	public List&lt;InventoryPojo&gt; getAll() {
-<span class="nc" id="L60">		return inventory_dao.selectAll();</span>
+<span class="fc" id="L60">		return inventory_dao.selectAll();</span>
 	}
 
 	// Updation of inventory 
 	@Transactional(rollbackOn = ApiException.class)
 	public void update(int id, InventoryPojo p) throws ApiException {
-<span class="nc" id="L66">		check(p);</span>
-<span class="nc" id="L67">		InventoryPojo pojo = checkIfExists(id);</span>
-<span class="nc" id="L68">		pojo.setQuantity(p.getQuantity());</span>
-<span class="nc" id="L69">		inventory_dao.update(id,pojo);</span>
-<span class="nc" id="L70">	}</span>
+<span class="fc" id="L66">		check(p);</span>
+<span class="fc" id="L67">		InventoryPojo pojo = checkIfExists(id);</span>
+<span class="fc" id="L68">		pojo.setQuantity(p.getQuantity());</span>
+<span class="fc" id="L69">		inventory_dao.update(id,pojo);</span>
+<span class="fc" id="L70">	}</span>
 	
 	///// HELPER FUNCTIONS/////////
 
 	// Checking if particular inventory pojo exists 
 	@Transactional(rollbackOn = ApiException.class)
 	public InventoryPojo checkIfExists(int id) throws ApiException {
-<span class="nc" id="L77">		InventoryPojo p = inventory_dao.select(id);</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">		if (p == null) {</span>
-<span class="nc" id="L79">			throw new ApiException(&quot;Inventory with given ID does not exist, id: &quot; + id);</span>
+<span class="fc" id="L77">		InventoryPojo p = inventory_dao.select(id);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		if (p == null) {</span>
+<span class="fc" id="L79">			throw new ApiException(&quot;Inventory with given ID does not exist, id: &quot; + id);</span>
 		}
-<span class="nc" id="L81">		return p;</span>
+<span class="fc" id="L81">		return p;</span>
 	}
 
 	/* Validate */
 	protected void check(InventoryPojo pojo) throws ApiException {
-<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (pojo.getQuantity() &lt; 0) {</span>
-<span class="nc" id="L87">			throw new ApiException(&quot;Inventory quantity should be positive&quot;);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">		if (pojo.getQuantity() &lt; 0) {</span>
+<span class="fc" id="L87">			throw new ApiException(&quot;Inventory quantity should be positive&quot;);</span>
 		}
 
-<span class="nc" id="L90">	}</span>
+<span class="fc" id="L90">	}</span>
 
 	// Check if inventory exists or not by barcode 
 	protected List&lt;InventoryPojo&gt; checkIfBarcodePresent(InventoryPojo p) throws ApiException {
-<span class="nc" id="L94">		List&lt;InventoryPojo&gt; lis = inventory_dao.selectByProduct(p.getProduct());</span>
-<span class="nc" id="L95">		return lis;</span>
+<span class="fc" id="L94">		List&lt;InventoryPojo&gt; lis = inventory_dao.selectByProduct(p.getProduct());</span>
+<span class="fc" id="L95">		return lis;</span>
 
 	}
 	

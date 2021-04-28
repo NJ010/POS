@@ -36,9 +36,12 @@ table {
 }
 
 .page-heading {
-    font-size: 32px;
+    font-size: 46px;
     margin: auto;
+    padding-left: 20px;
     width: 50%;
+    justify-content: center;
+    color: gainsboro;
     padding: 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;

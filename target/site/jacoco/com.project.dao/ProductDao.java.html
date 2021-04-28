@@ -13,48 +13,48 @@ import com.project.pojo.ProductPojo;
 
 
 @Repository
-<span class="nc" id="L16">public class ProductDao {</span>
+<span class="fc" id="L16">public class ProductDao {</span>
 	
 	@PersistenceContext
 	EntityManager em;
 	
-<span class="nc" id="L21">	private static String select_all = &quot;select p from ProductPojo p&quot;;</span>
-<span class="nc" id="L22">	private static String select_barcode = &quot;select p from ProductPojo p where barcode=:barcode&quot;;</span>
+<span class="fc" id="L21">	private static String select_all = &quot;select p from ProductPojo p&quot;;</span>
+<span class="fc" id="L22">	private static String select_barcode = &quot;select p from ProductPojo p where barcode=:barcode&quot;;</span>
 	
 	//Insert product 
 	public void insert(ProductPojo p) {
-<span class="nc" id="L26">		em.persist(p);</span>
-<span class="nc" id="L27">	}</span>
+<span class="fc" id="L26">		em.persist(p);</span>
+<span class="fc" id="L27">	}</span>
 	
 	//Delete Product 
 	public void delete(int id) {
-<span class="nc" id="L31">		ProductPojo p = em.find(ProductPojo.class, id);</span>
-<span class="nc" id="L32">		em.remove(p);</span>
-<span class="nc" id="L33">	}</span>
+<span class="fc" id="L31">		ProductPojo p = em.find(ProductPojo.class, id);</span>
+<span class="fc" id="L32">		em.remove(p);</span>
+<span class="fc" id="L33">	}</span>
 	
 	//Select product 
 	public ProductPojo select(int id) {
-<span class="nc" id="L37">		return em.find(ProductPojo.class, id);</span>
+<span class="fc" id="L37">		return em.find(ProductPojo.class, id);</span>
 	}
 	
 	//Select product by barcode
 	public ProductPojo select(String barcode) {
-<span class="nc" id="L42">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_barcode);</span>
-<span class="nc" id="L43">		query.setParameter(&quot;barcode&quot;, barcode);</span>
-<span class="nc" id="L44">		List&lt;ProductPojo&gt; lis = query.getResultList();</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">		if(lis.size()&gt;0) {</span>
-<span class="nc" id="L46">			ProductPojo p = lis.get(0);</span>
-<span class="nc" id="L47">			return p;</span>
+<span class="fc" id="L42">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_barcode);</span>
+<span class="fc" id="L43">		query.setParameter(&quot;barcode&quot;, barcode);</span>
+<span class="fc" id="L44">		List&lt;ProductPojo&gt; lis = query.getResultList();</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		if(lis.size()&gt;0) {</span>
+<span class="fc" id="L46">			ProductPojo p = lis.get(0);</span>
+<span class="fc" id="L47">			return p;</span>
 		}
 		else {
-<span class="nc" id="L50">			return null;</span>
+<span class="fc" id="L50">			return null;</span>
 		}
 	}
 	
 	//Select all products 
 	public List&lt;ProductPojo&gt; selectAll() {
-<span class="nc" id="L56">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_all);</span>
-<span class="nc" id="L57">		return query.getResultList();	</span>
+<span class="fc" id="L56">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_all);</span>
+<span class="fc" id="L57">		return query.getResultList();	</span>
 	}
 	
 	
@@ -72,7 +72,7 @@ import com.project.pojo.ProductPojo;
 	
 	
 	private TypedQuery&lt;ProductPojo&gt; getQuery(String jpql) {
-<span class="nc" id="L75">		return em.createQuery(jpql,ProductPojo.class);</span>
+<span class="fc" id="L75">		return em.createQuery(jpql,ProductPojo.class);</span>
 	}
 
 }

@@ -12,22 +12,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-<span class="nc" id="L15">public class SecurityConfig extends WebSecurityConfigurerAdapter {</span>
+<span class="fc" id="L15">public class SecurityConfig extends WebSecurityConfigurerAdapter {</span>
 
-<span class="nc" id="L17">	private static Logger logger = Logger.getLogger(SecurityConfig.class);</span>
+<span class="fc" id="L17">	private static Logger logger = Logger.getLogger(SecurityConfig.class);</span>
 
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-<span class="nc" id="L23">		http.csrf().disable();</span>
-<span class="nc" id="L24">	}</span>
+<span class="fc" id="L23">		http.csrf().disable();</span>
+<span class="fc" id="L24">	}</span>
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-<span class="nc" id="L28">		web.ignoring().antMatchers(&quot;/v2/api-docs&quot;, &quot;/configuration/ui&quot;, &quot;/swagger-resources&quot;, &quot;/configuration/security&quot;,</span>
-				&quot;/swagger-ui.html&quot;, &quot;/webjars/**&quot;);
-<span class="nc" id="L30">	}</span>
+<span class="fc" id="L28">		web.ignoring().antMatchers(&quot;/v2/api-docs&quot;, &quot;/configuration/ui&quot;, &quot;/swagger-resources&quot;, &quot;/configuration/security&quot;,</span>
+<span class="fc" id="L29">				&quot;/swagger-ui.html&quot;, &quot;/webjars/**&quot;);</span>
+<span class="fc" id="L30">	}</span>
 	
 	
 

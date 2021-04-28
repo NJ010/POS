@@ -118,6 +118,7 @@ function displayInventoryList(data){
 	var $tbody = $('#inventory-table').find('tbody');
 	$tbody.empty();
 	for(var i in data){
+		if(data[i].quantity<=0) {continue;}
 		var e = data[i];
 		var buttonHtml = ' <button style="padding: 0;border: none;background: none;" onclick="displayEditInventory(' + e.id + ')"><span class="material-icons" style="color:#CCCC00">edit</span></button>'
 		var row = '<tr>'

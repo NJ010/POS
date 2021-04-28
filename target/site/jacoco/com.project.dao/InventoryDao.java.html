@@ -15,61 +15,60 @@ import com.project.pojo.ProductPojo;
 
 
 @Repository
-<span class="nc" id="L18">public class InventoryDao {</span>
+<span class="fc" id="L18">public class InventoryDao {</span>
 	
 	@PersistenceContext
 	EntityManager em;
 	
-<span class="nc" id="L23">	private static String select_all = &quot;select p from InventoryPojo p&quot;;</span>
-<span class="nc" id="L24">	private static String select_product = &quot;select p from InventoryPojo p where p.product=:productpojo&quot;;</span>
+<span class="fc" id="L23">	private static String select_all = &quot;select p from InventoryPojo p&quot;;</span>
+<span class="fc" id="L24">	private static String select_product = &quot;select p from InventoryPojo p where p.product=:productpojo&quot;;</span>
 	
 	//Insert inventory to DB
 	public void insert(InventoryPojo p) {
-<span class="nc" id="L28">		em.persist(p);</span>
-<span class="nc" id="L29">	}</span>
+<span class="fc" id="L28">		em.persist(p);</span>
+<span class="fc" id="L29">	}</span>
 	
 	//Delete inventory from DB
 	public void delete(int id) {
-<span class="nc" id="L33">		InventoryPojo p = em.find(InventoryPojo.class, id);</span>
-<span class="nc" id="L34">		em.remove(p);</span>
-<span class="nc" id="L35">	}</span>
+<span class="fc" id="L33">		InventoryPojo p = em.find(InventoryPojo.class, id);</span>
+<span class="fc" id="L34">		em.remove(p);</span>
+<span class="fc" id="L35">	}</span>
 	
 	//Select inventory from DB
 	public InventoryPojo select(int id) {
-<span class="nc" id="L39">		return em.find(InventoryPojo.class, id);</span>
+<span class="fc" id="L39">		return em.find(InventoryPojo.class, id);</span>
 	}
 	
 	//Select Inventory based on product
 	public List&lt;InventoryPojo&gt; selectByProduct(ProductPojo p) {
-<span class="nc" id="L44">		TypedQuery&lt;InventoryPojo&gt; query = getQuery(select_product);</span>
-<span class="nc" id="L45">		query.setParameter(&quot;productpojo&quot;, p);</span>
-<span class="nc" id="L46">		return query.getResultList();</span>
+<span class="fc" id="L44">		TypedQuery&lt;InventoryPojo&gt; query = getQuery(select_product);</span>
+<span class="fc" id="L45">		query.setParameter(&quot;productpojo&quot;, p);</span>
+<span class="fc" id="L46">		return query.getResultList();</span>
 	}
 	
 	//Select All inventory pojos
 	public List&lt;InventoryPojo&gt; selectAll() {
-<span class="nc" id="L51">		TypedQuery&lt;InventoryPojo&gt; query = getQuery(select_all);</span>
-<span class="nc" id="L52">		return query.getResultList();</span>
+<span class="fc" id="L51">		TypedQuery&lt;InventoryPojo&gt; query = getQuery(select_all);</span>
+<span class="fc" id="L52">		return query.getResultList();</span>
 	}
 	
 	
 	private TypedQuery&lt;InventoryPojo&gt; getQuery(String jpql) {
-<span class="nc" id="L57">		return em.createQuery(jpql,InventoryPojo.class);</span>
+<span class="fc" id="L57">		return em.createQuery(jpql,InventoryPojo.class);</span>
 	}
 
 	public void update(int id,InventoryPojo pojo) {
-<span class="nc" id="L61">		String update_query =&quot;update InventoryPojo set quantity = :quantity  where id = :id&quot;;</span>
-<span class="nc" id="L62">		em.createQuery(update_query).setParameter(&quot;id&quot;, id)</span>
-<span class="nc" id="L63">		.setParameter(&quot;quantity&quot;,pojo.getQuantity())</span>
-<span class="nc" id="L64">		.executeUpdate();</span>
+<span class="fc" id="L61">		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);</span>
+<span class="fc" id="L62">		orignal_pojo.setProduct(pojo.getProduct());</span>
+<span class="fc" id="L63">		orignal_pojo.setQuantity(pojo.getQuantity());</span>
+<span class="fc" id="L64">		em.merge(orignal_pojo);</span>
+<span class="fc" id="L65">	}</span>
+	public void updatequantity(int id,InventoryPojo pojo) {
+<span class="fc" id="L67">		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);</span>
+<span class="fc" id="L68">		orignal_pojo.setProduct(pojo.getProduct());</span>
+<span class="fc" id="L69">		orignal_pojo.setQuantity(pojo.getQuantity()+orignal_pojo.getQuantity());</span>
+<span class="fc" id="L70">		em.merge(orignal_pojo);</span>
 		
-<span class="nc" id="L66">	}</span>
-	public void updatequantity(InventoryPojo orignal_pojo,InventoryPojo pojo) {
-<span class="nc" id="L68">		String update_query =&quot;update InventoryPojo set quantity = :quantity  where id = :id&quot;;</span>
-<span class="nc" id="L69">		em.createQuery(update_query).setParameter(&quot;id&quot;, orignal_pojo.getId())</span>
-<span class="nc" id="L70">		.setParameter(&quot;quantity&quot;,pojo.getQuantity()+ orignal_pojo.getQuantity())</span>
-<span class="nc" id="L71">		.executeUpdate();</span>
-		
-<span class="nc" id="L73">	}</span>
+<span class="fc" id="L72">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -22,7 +22,7 @@ public class InventoryService {
 		check(pojo);
 		List<InventoryPojo> pojo_list= checkIfBarcodePresent(pojo);
 		if(pojo_list.size()>0) {
-			inventory_dao.updatequantity(pojo_list.get(0), pojo);
+			inventory_dao.updatequantity(pojo_list.get(0).getId(), pojo);
 		}
 		else {
 			inventory_dao.insert(pojo);

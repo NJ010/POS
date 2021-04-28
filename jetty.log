@@ -558,3 +558,20 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2021-04-26 22:27:26 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
 2021-04-26 22:27:26 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
 2021-04-26 22:27:26 INFO  FOUserAgent:83 - Rendered page #1.
+2021-04-28 12:36:57 WARN  DefaultHandlerExceptionResolver:361 - Failed to bind request element: org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "b"
+2021-04-28 12:51:17 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-04-28 12:51:17 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-04-28 12:51:17 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-04-28 12:51:17 INFO  FOUserAgent:83 - Rendered page #1.
+2021-04-28 14:15:38 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-04-28 14:15:38 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-04-28 14:15:38 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-04-28 14:15:39 INFO  FOUserAgent:83 - Rendered page #1.
+2021-04-28 16:28:56 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-04-28 16:28:56 ERROR SqlExceptionHelper:142 - Duplicate entry '1-string-10' for key 'productpojo.Brand_Category_name_mrp'
+2021-04-28 16:31:20 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-04-28 16:31:20 ERROR SqlExceptionHelper:142 - Duplicate entry '1-string-10' for key 'productpojo.Brand_Category_name_mrp'
+2021-04-28 16:32:09 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-04-28 16:32:09 ERROR SqlExceptionHelper:142 - Duplicate entry '1-string-10' for key 'productpojo.Brand_Category_name_mrp'
+2021-04-28 16:37:13 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-04-28 16:37:13 ERROR SqlExceptionHelper:142 - Duplicate entry '1-string-10' for key 'productpojo.Brand_Category_name_mrp'

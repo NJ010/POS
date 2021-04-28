@@ -133,6 +133,7 @@ function handleAjaxError(response) {
 	toastr.error(response.message);
 }
 
+
 //HELPER METHOD
 function toJson($form){
     var serialized = $form.serializeArray();
@@ -180,7 +181,7 @@ function ajaxQueryRecur(url, type, data, successFunction,recurFunction) {
 			  var error = "For " + data;
 				console.log(error_obj.message);
 				error_obj.message = error + " " + error_obj.message;
-				console.log(error_obj.message);
+				toastr.error(error_obj.message);
 	   		errorData.push(error_obj);
 				recurFunction();
 	   }

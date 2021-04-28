@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-public class InvoiceController {
+public class InvoiceController extends ExceptionalHandler{
 
 	@Autowired
 	private ReportService report_service;

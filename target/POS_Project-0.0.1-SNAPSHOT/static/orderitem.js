@@ -30,7 +30,6 @@ function addOrderItemToList(event) {
 	var check = validateOrderItem(json);
 	if(check) {
 		var ind = checkIfAlreadyPresent(JSON.parse(json).barcode);
-		console.log();
 
 		if(ind==-1){
 			if(parseInt(inventoryMap[JSON.parse(json).barcode])>=parseInt(JSON.parse(json).quantity)) {
@@ -46,6 +45,9 @@ function addOrderItemToList(event) {
 				orderitemList[ind].quantity = qty;
 			}
 			else{
+				if(!inventoryMap[JSON.parse(json).barcode]){
+					toastr.error("Quantity ordered is exceeding inventory. Inventory present is " + 0);
+				}
 				toastr.error("Quantity ordered is exceeding inventory. Inventory present is " + inventoryMap[JSON.parse(json).barcode]);
 			}
 		}
@@ -193,7 +195,7 @@ function displayOrdersList(data) {
 	for(var i in data){
 		var e = data[i];
 		var buttonHtml = '<button style="padding: 0;border: none;background: none;" onclick="initializeDropdown(' + e.id + ')"><span class="material-icons style="color:thistle"">keyboard_arrow_down</span></button>';
-		buttonHtml += '<button style="padding: 0;border: none;background: none;" onclick="deleteOrder(' + e.id + ')"><span class="material-icons" style="color:thistle">delete</span></button>';
+		
 		var row = '<tr class="order-header">'
 		+ '<td>' + e.id + '</td>'
 		+ '<td>'  + e.datetime + '</td>'

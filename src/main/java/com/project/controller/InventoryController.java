@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-public class InventoryController {
+public class InventoryController extends ExceptionalHandler{
 
 	@Autowired
 	private InventoryService inventory_service;

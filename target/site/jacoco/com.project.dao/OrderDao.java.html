@@ -11,18 +11,18 @@ import org.springframework.stereotype.Repository;
 import com.project.pojo.OrderPojo;
 
 @Repository
-<span class="nc" id="L14">public class OrderDao {</span>
+<span class="fc" id="L14">public class OrderDao {</span>
 	
 	@PersistenceContext
 	EntityManager em;
 	
-<span class="nc" id="L19">	private static String select_all = &quot;select p from OrderPojo p&quot;;</span>
+<span class="fc" id="L19">	private static String select_all = &quot;select p from OrderPojo p&quot;;</span>
 	
 	//Insert Order 
 	public int insert(OrderPojo p) {
-<span class="nc" id="L23">		em.persist(p);</span>
-<span class="nc" id="L24">		em.flush();</span>
-<span class="nc" id="L25">		return p.getId();</span>
+<span class="fc" id="L23">		em.persist(p);</span>
+<span class="fc" id="L24">		em.flush();</span>
+<span class="fc" id="L25">		return p.getId();</span>
 	}
 	
 	//Delete Order 
@@ -33,19 +33,19 @@ import com.project.pojo.OrderPojo;
 	
 	//Select Order
 	public OrderPojo select(int id) {
-<span class="nc" id="L36">		return em.find(OrderPojo.class, id);</span>
+<span class="fc" id="L36">		return em.find(OrderPojo.class, id);</span>
 	}
 	
 	//Select All Orders 
 	public List&lt;OrderPojo&gt; selectAll() {
-<span class="nc" id="L41">		TypedQuery&lt;OrderPojo&gt; query = getQuery(select_all);</span>
-<span class="nc" id="L42">		return query.getResultList();</span>
+<span class="fc" id="L41">		TypedQuery&lt;OrderPojo&gt; query = getQuery(select_all);</span>
+<span class="fc" id="L42">		return query.getResultList();</span>
 	}
 	
 	
 	
 	private TypedQuery&lt;OrderPojo&gt; getQuery(String jpql) {
-<span class="nc" id="L48">		return em.createQuery(jpql,OrderPojo.class);</span>
+<span class="fc" id="L48">		return em.createQuery(jpql,OrderPojo.class);</span>
 	}
 
 

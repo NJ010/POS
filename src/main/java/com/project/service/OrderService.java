@@ -129,6 +129,8 @@ public class OrderService {
 	}
 	
 	
+	
+	
 	//after adding or updating orders makes changes to the inventory
 	@Transactional(rollbackFor = ApiException.class)
 	protected void updateInventory(OrderItemPojo pojo, int old_qty) throws ApiException {
@@ -157,7 +159,7 @@ public class OrderService {
 			throw new ApiException("Product with this id does not exist");
 		}
 		if(pojo.getQuantity()<=0) {
-			throw new ApiException("Item Quantity must be greater than 10000");
+			throw new ApiException("Quantity must be positive");
 		}
 		
 	}

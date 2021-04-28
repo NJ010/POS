@@ -15,43 +15,43 @@ import com.project.utilities.BarcodeUtil;
 
 
 @Service
-<span class="nc" id="L18">public class ProductService {</span>
+<span class="fc" id="L18">public class ProductService {</span>
 	@Autowired
 	private ProductDao product_dao;
 
 	/* Adding Product Details */
 	@Transactional
 	public void add(ProductPojo p) throws ApiException {
-<span class="nc" id="L25">		check(p);</span>
-<span class="nc" id="L26">		normalize(p);</span>
-<span class="nc" id="L27">		p.setBarcode(BarcodeUtil.randomString(8));</span>
-<span class="nc" id="L28">		product_dao.insert(p);</span>
-<span class="nc" id="L29">	}</span>
+<span class="fc" id="L25">		check(p);</span>
+<span class="fc" id="L26">		normalize(p);</span>
+<span class="fc" id="L27">		p.setBarcode(BarcodeUtil.randomString(8));</span>
+<span class="fc" id="L28">		product_dao.insert(p);</span>
+<span class="fc" id="L29">	}</span>
 
 	/* Deletion of Product Details by id */
 	@Transactional
 	public void delete(int id) {
-<span class="nc" id="L34">		product_dao.delete(id);</span>
-<span class="nc" id="L35">	}</span>
+<span class="fc" id="L34">		product_dao.delete(id);</span>
+<span class="fc" id="L35">	}</span>
 
 	/* Fetching of product details by id */
 	@Transactional
 	public ProductPojo get(int id) throws ApiException {
-<span class="nc" id="L40">		ProductPojo p = checkIfExists(id);</span>
-<span class="nc" id="L41">		return p;</span>
+<span class="fc" id="L40">		ProductPojo p = checkIfExists(id);</span>
+<span class="fc" id="L41">		return p;</span>
 	}
 
 	/* Fetching of product details by barcode */
 	@Transactional
 	public ProductPojo get(String barcode) throws ApiException {
-<span class="nc" id="L47">		ProductPojo p = checkIfExists(barcode);</span>
-<span class="nc" id="L48">		return p;</span>
+<span class="fc" id="L47">		ProductPojo p = checkIfExists(barcode);</span>
+<span class="fc" id="L48">		return p;</span>
 	}
 
 	/* Fetching all product details */
 	@Transactional
 	public List&lt;ProductPojo&gt; getAll() {
-<span class="nc" id="L54">		return product_dao.selectAll();</span>
+<span class="fc" id="L54">		return product_dao.selectAll();</span>
 	}
 
 	/* Getting a map of product details pojos with barcode as key */
@@ -61,7 +61,7 @@ import com.project.utilities.BarcodeUtil;
 <span class="nc" id="L61">		Map&lt;String, ProductPojo&gt; barcode_product = new HashMap&lt;String, ProductPojo&gt;();</span>
 <span class="nc bnc" id="L62" title="All 2 branches missed.">		for (ProductPojo product : product_list) {</span>
 <span class="nc" id="L63">			barcode_product.put(product.getBarcode(), product);</span>
-<span class="nc" id="L64">		}</span>
+		}
 <span class="nc" id="L65">		return barcode_product;</span>
 	}
 
@@ -80,39 +80,39 @@ import com.project.utilities.BarcodeUtil;
 	/* Check if product exists with given id */
 	@Transactional(rollbackFor = ApiException.class)
 	public ProductPojo checkIfExists(int id) throws ApiException {
-<span class="nc" id="L83">		ProductPojo p = product_dao.select(id);</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">		if (p == null) {</span>
-<span class="nc" id="L85">			throw new ApiException(&quot;ProductDetails with given ID does not exist, id: &quot; + id);</span>
+<span class="fc" id="L83">		ProductPojo p = product_dao.select(id);</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		if (p == null) {</span>
+<span class="fc" id="L85">			throw new ApiException(&quot;ProductDetails with given ID does not exist, id: &quot; + id);</span>
 		}
-<span class="nc" id="L87">		return p;</span>
+<span class="fc" id="L87">		return p;</span>
 	}
 
 	/* Check if product exists with given barcode */
 	@Transactional(rollbackFor = ApiException.class)
 	public ProductPojo checkIfExists(String barcode) throws ApiException {
-<span class="nc" id="L93">		ProductPojo p = product_dao.select(barcode);</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (p == null) {</span>
-<span class="nc" id="L95">			throw new ApiException(&quot;ProductDetails with given barcode does not exist, barcode: &quot; + barcode);</span>
+<span class="fc" id="L93">		ProductPojo p = product_dao.select(barcode);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		if (p == null) {</span>
+<span class="fc" id="L95">			throw new ApiException(&quot;ProductDetails with given barcode does not exist, barcode: &quot; + barcode);</span>
 		}
-<span class="nc" id="L97">		return p;</span>
+<span class="fc" id="L97">		return p;</span>
 	}
 
 	/* Normalize */
 	protected void normalize(ProductPojo p) {
-<span class="nc" id="L102">		p.setName(p.getName().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="nc" id="L103">		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="nc" id="L104">		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="nc" id="L105">	}</span>
+<span class="fc" id="L102">		p.setName(p.getName().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L103">		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L104">		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L105">	}</span>
 
 	/* Validate */
 	protected void check(ProductPojo p) throws ApiException {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">		if (p.getName().isEmpty()) {</span>
-<span class="nc" id="L110">			throw new ApiException(&quot;The name of product must not be empty&quot;);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		if (p.getName().isEmpty()) {</span>
+<span class="fc" id="L110">			throw new ApiException(&quot;The name of product must not be empty&quot;);</span>
 		}
-<span class="nc bnc" id="L112" title="All 2 branches missed.">		if (p.getMrp() &lt;= 0) {</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		if (p.getMrp() &lt;= 0) {</span>
 <span class="nc" id="L113">			throw new ApiException(&quot;Mrp value should be positive&quot;);</span>
 		}
-<span class="nc" id="L115">	}</span>
+<span class="fc" id="L115">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

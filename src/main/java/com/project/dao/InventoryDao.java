@@ -58,17 +58,16 @@ public class InventoryDao {
 	}
 
 	public void update(int id,InventoryPojo pojo) {
-		String update_query ="update InventoryPojo set quantity = :quantity  where id = :id";
-		em.createQuery(update_query).setParameter("id", id)
-		.setParameter("quantity",pojo.getQuantity())
-		.executeUpdate();
-		
+		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);
+		orignal_pojo.setProduct(pojo.getProduct());
+		orignal_pojo.setQuantity(pojo.getQuantity());
+		em.merge(orignal_pojo);
 	}
-	public void updatequantity(InventoryPojo orignal_pojo,InventoryPojo pojo) {
-		String update_query ="update InventoryPojo set quantity = :quantity  where id = :id";
-		em.createQuery(update_query).setParameter("id", orignal_pojo.getId())
-		.setParameter("quantity",pojo.getQuantity()+ orignal_pojo.getQuantity())
-		.executeUpdate();
+	public void updatequantity(int id,InventoryPojo pojo) {
+		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);
+		orignal_pojo.setProduct(pojo.getProduct());
+		orignal_pojo.setQuantity(pojo.getQuantity()+orignal_pojo.getQuantity());
+		em.merge(orignal_pojo);
 		
 	}
 }

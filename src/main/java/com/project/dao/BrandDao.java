@@ -51,11 +51,10 @@ public class BrandDao {
 	}
 	
 	public void update(int id,BrandCategoryPojo pojo) {
-		String update_query ="update BrandCategoryPojo set brand = :brand ,category = :category where id = :id";
-		em.createQuery(update_query).setParameter("id", id)
-		.setParameter("brand",pojo.getBrand())
-		.setParameter("category",pojo.getCategory())
-		.executeUpdate();
+		BrandCategoryPojo orignal_pojo=em.find(BrandCategoryPojo.class, id);
+		orignal_pojo.setBrand(pojo.getBrand());
+		orignal_pojo.setCategory(pojo.getCategory());
+		em.merge(pojo);
 		
 	}
 	
