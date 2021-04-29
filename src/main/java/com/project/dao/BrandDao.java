@@ -54,7 +54,7 @@ public class BrandDao {
 		BrandCategoryPojo orignal_pojo=em.find(BrandCategoryPojo.class, id);
 		orignal_pojo.setBrand(pojo.getBrand());
 		orignal_pojo.setCategory(pojo.getCategory());
-		em.merge(pojo);
+		em.merge(orignal_pojo);
 		
 	}
 	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.project.service.ProductServiceTest" time="0.295" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="com.project.service.ProductServiceTest" time="0.359" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_281\jre\bin"/>
@@ -65,11 +65,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.project.service.ProductServiceTest" name="testGetByIdNotExisting" time="0.05"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testAdd" time="0.047"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testAddWrong" time="0.028"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testGetById" time="0.035"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testGetByBarcodeNotExisting" time="0.046"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testDelete" time="0.055"/>
-  <testcase classname="com.project.service.ProductServiceTest" name="testGetByBarcode" time="0.034"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testGetByIdNotExisting" time="0.035"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testAdd" time="0.069"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testAddWrong" time="0.054"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testGetById" time="0.038"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testGetByBarcodeNotExisting" time="0.041"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testDelete" time="0.081"/>
+  <testcase classname="com.project.service.ProductServiceTest" name="testGetByBarcode" time="0.041"/>
 </testsuite>

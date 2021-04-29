@@ -14,11 +14,7 @@ import com.project.spring.AbstractUnit;
 
 public class BrandServiceTest extends AbstractUnit{
 	
-	@Before
-	public void Initialize() throws ApiException {
-		insertObjects();
-	}
-
+	
 	
 	//Test for add(), get by id and getAll() in service layer
 	@Test
