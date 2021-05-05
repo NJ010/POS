@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <brands>
     <brand_item>
-        <brand>string</brand>
-        <category>string</category>
+        <brand>abc</brand>
+        <category>abc</category>
         <id>1</id>
+    </brand_item>
+    <brand_item>
+        <brand>brand1</brand>
+        <category>category1</category>
+        <id>2</id>
+    </brand_item>
+    <brand_item>
+        <brand>brand2</brand>
+        <category>category2</category>
+        <id>3</id>
+    </brand_item>
+    <brand_item>
+        <brand>brand3</brand>
+        <category>category3</category>
+        <id>4</id>
     </brand_item>
 </brands>

@@ -54,7 +54,7 @@ import com.project.pojo.BrandCategoryPojo;
 <span class="nc" id="L54">		BrandCategoryPojo orignal_pojo=em.find(BrandCategoryPojo.class, id);</span>
 <span class="nc" id="L55">		orignal_pojo.setBrand(pojo.getBrand());</span>
 <span class="nc" id="L56">		orignal_pojo.setCategory(pojo.getCategory());</span>
-<span class="nc" id="L57">		em.merge(pojo);</span>
+<span class="nc" id="L57">		em.merge(orignal_pojo);</span>
 		
 <span class="nc" id="L59">	}</span>
 	

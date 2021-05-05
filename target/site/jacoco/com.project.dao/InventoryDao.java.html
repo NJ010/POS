@@ -64,11 +64,11 @@ import com.project.pojo.ProductPojo;
 <span class="fc" id="L64">		em.merge(orignal_pojo);</span>
 <span class="fc" id="L65">	}</span>
 	public void updatequantity(int id,InventoryPojo pojo) {
-<span class="fc" id="L67">		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);</span>
-<span class="fc" id="L68">		orignal_pojo.setProduct(pojo.getProduct());</span>
-<span class="fc" id="L69">		orignal_pojo.setQuantity(pojo.getQuantity()+orignal_pojo.getQuantity());</span>
-<span class="fc" id="L70">		em.merge(orignal_pojo);</span>
+<span class="nc" id="L67">		InventoryPojo orignal_pojo=em.find(InventoryPojo.class, id);</span>
+<span class="nc" id="L68">		orignal_pojo.setProduct(pojo.getProduct());</span>
+<span class="nc" id="L69">		orignal_pojo.setQuantity(pojo.getQuantity()+orignal_pojo.getQuantity());</span>
+<span class="nc" id="L70">		em.merge(orignal_pojo);</span>
 		
-<span class="fc" id="L72">	}</span>
+<span class="nc" id="L72">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.project.model.TsvError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +32,15 @@ public class BrandController extends ExceptionalHandler {
 	
 	@Autowired
 	private BrandService brand_service;
-	
+
+
+	@ApiOperation(value = "Add List of Brand Details")
+	@RequestMapping(path = "/api/brand/list", method = RequestMethod.POST)
+	public List<TsvError> add(@RequestBody List<BrandForm> list) throws ApiException {
+		List<BrandCategoryPojo> brand_pojos = DataConversionUtil.convertList(list);
+		List<TsvError> errors = brand_service.addList(brand_pojos);
+		return errors;
+	}
 	//insert brand and category to our database
 	@ApiOperation(value = "Adds Brand Details")
 	@RequestMapping(path = "/api/brand", method = RequestMethod.POST)

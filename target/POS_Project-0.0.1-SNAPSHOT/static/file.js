@@ -11,6 +11,7 @@ function getBrandUrl(){
 	return baseUrl + "/api/brand";
 }
 
+
 function getProductDetailsUrl(){
 	var baseUrl = $("meta[name=baseUrl]").attr("content");
 	console.log(baseUrl);
@@ -157,10 +158,10 @@ function ajaxQuery(url, type, data, successFunction,errorFunction) {
        	'Content-Type': 'application/json'
        },
 	   success: function(response) {
-	   		successFunction(response);
+	   		successFunction(response.responseText);
 	   },
 	   error: function(response){
-	   		errorFunction(response);
+	   		errorFunction(response.responseText);
 	   }
 	});
 }
@@ -174,16 +175,17 @@ function ajaxQueryRecur(url, type, data, successFunction,recurFunction) {
        	'Content-Type': 'application/json'
        },
 	   success: function(response) {
-	   		successFunction(response);
+            console.log(response);
 	   },
 	   error: function(response){
+	          console.log(response);
 			  var error_obj = JSON.parse(response.responseText);
 			  var error = "For " + data;
 				console.log(error_obj.message);
 				error_obj.message = error + " " + error_obj.message;
 				toastr.error(error_obj.message);
 	   		errorData.push(error_obj);
-				recurFunction();
+
 	   }
 	});
 }

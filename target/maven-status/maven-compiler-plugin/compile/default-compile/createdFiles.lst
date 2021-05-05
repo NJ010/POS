@@ -2,6 +2,7 @@ com\project\service\ApiException.class
 com\project\model\OrderItemData.class
 com\project\model\ProductForm.class
 com\project\pojo\ProductPojo.class
+com\project\model\TsvError.class
 com\project\spring\DBConfig.class
 com\project\service\OrderService.class
 com\project\utilities\DataConversionUtil.class

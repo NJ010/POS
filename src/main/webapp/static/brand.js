@@ -4,6 +4,12 @@ function getBrandUrl(){
 	return baseUrl + "/api/brand";
 }
 
+function getBrandUrlList(){
+	var baseUrl = $("meta[name=baseUrl]").attr("content");
+	console.log(baseUrl);
+	return baseUrl + "/api/brand/list";
+}
+
 //BUTTON ACTIONS
 function addBrand(event){
 	//Set the values to update
@@ -113,20 +119,10 @@ function readFileDataCallback(results){
 function uploadRows(){
 	updateUploadDialog();
 	$("#download-errors").prop("disabled",false);
-	//If everything processed then return
-	if(rowsProcessed==fileData.length){
-		getBrandList();
-		return;
-	}
-
-	//Process next row
-	var row = fileData[rowsProcessed];
-	console.log(row);
-	rowsProcessed++;
-
+	var row = fileData;
 	var json = JSON.stringify(row);
 
-	var url = getBrandUrl();
+	var url = getBrandUrlList();
 
 	//Make ajax call
 	ajaxQueryRecur(url,'POST',json,uploadRows,uploadRows);

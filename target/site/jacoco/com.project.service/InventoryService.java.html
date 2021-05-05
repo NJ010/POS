@@ -21,9 +21,9 @@ import com.project.pojo.InventoryPojo;
 	public void add(InventoryPojo pojo) throws ApiException {
 <span class="fc" id="L22">		check(pojo);</span>
 <span class="fc" id="L23">		List&lt;InventoryPojo&gt; pojo_list= checkIfBarcodePresent(pojo);</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">		if(pojo_list.size()&gt;0) {</span>
-<span class="fc" id="L25">			inventory_dao.updatequantity(pojo_list.get(0).getId(), pojo);</span>
-<span class="fc" id="L26">		}</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">		if(pojo_list.size()&gt;0) {</span>
+<span class="nc" id="L25">			inventory_dao.updatequantity(pojo_list.get(0).getId(), pojo);</span>
+		}
 		else {
 <span class="fc" id="L28">			inventory_dao.insert(pojo);</span>
 		}
@@ -50,7 +50,7 @@ import com.project.pojo.InventoryPojo;
 <span class="fc bfc" id="L50" title="All 2 branches covered.">			if (ip.getProduct().getId() == product_id) {</span>
 <span class="fc" id="L51">				return ip;</span>
 			}
-		}
+<span class="fc" id="L53">		}</span>
 <span class="nc" id="L54">		throw new ApiException(&quot;No product with this id exist&quot;);</span>
 	}
 

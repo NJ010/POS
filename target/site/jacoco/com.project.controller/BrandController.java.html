@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.project.model.TsvError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,41 +28,49 @@ import io.swagger.annotations.ApiOperation;
 @Api
 @RestController
 
-<span class="fc" id="L30">public class BrandController extends ExceptionalHandler {</span>
+<span class="fc" id="L31">public class BrandController extends ExceptionalHandler {</span>
 	
 	@Autowired
 	private BrandService brand_service;
-	
+
+
+	@ApiOperation(value = &quot;Add List of Brand Details&quot;)
+	@RequestMapping(path = &quot;/api/brand/list&quot;, method = RequestMethod.POST)
+	public List&lt;TsvError&gt; add(@RequestBody List&lt;BrandForm&gt; list) throws ApiException {
+<span class="nc" id="L40">		List&lt;BrandCategoryPojo&gt; brand_pojos = DataConversionUtil.convertList(list);</span>
+<span class="nc" id="L41">		List&lt;TsvError&gt; errors = brand_service.addList(brand_pojos);</span>
+<span class="nc" id="L42">		return errors;</span>
+	}
 	//insert brand and category to our database
 	@ApiOperation(value = &quot;Adds Brand Details&quot;)
 	@RequestMapping(path = &quot;/api/brand&quot;, method = RequestMethod.POST)
 	public void add(@RequestBody BrandForm userform) throws ApiException {
-<span class="nc" id="L39">		BrandCategoryPojo brand_pojo = DataConversionUtil.convert(userform);</span>
-<span class="nc" id="L40">		brand_service.add(brand_pojo);</span>
-<span class="nc" id="L41">	}</span>
+<span class="nc" id="L48">		BrandCategoryPojo brand_pojo = DataConversionUtil.convert(userform);</span>
+<span class="nc" id="L49">		brand_service.add(brand_pojo);</span>
+<span class="nc" id="L50">	}</span>
 
 	
 
 	@ApiOperation(value = &quot;Gets  Brand details record by id&quot;)
 	@RequestMapping(path = &quot;/api/brand/{id}&quot;, method = RequestMethod.GET) 
 	public BrandData get(@PathVariable int id) throws ApiException {
-<span class="nc" id="L48">		BrandCategoryPojo brand_pojo = brand_service.get(id);</span>
-<span class="nc" id="L49">		return DataConversionUtil.convert(brand_pojo);</span>
+<span class="nc" id="L57">		BrandCategoryPojo brand_pojo = brand_service.get(id);</span>
+<span class="nc" id="L58">		return DataConversionUtil.convert(brand_pojo);</span>
 	}
 
 	@ApiOperation(value = &quot;Gets list of all Brands&quot;)
 	@RequestMapping(path = &quot;/api/brand&quot;, method = RequestMethod.GET)
 	public List&lt;BrandData&gt; getAll() {
-<span class="nc" id="L55">		List&lt;BrandCategoryPojo&gt; brand_pojo_list = brand_service.getAll();</span>
-<span class="nc" id="L56">		return DataConversionUtil.convert(brand_pojo_list);</span>
+<span class="nc" id="L64">		List&lt;BrandCategoryPojo&gt; brand_pojo_list = brand_service.getAll();</span>
+<span class="nc" id="L65">		return DataConversionUtil.convert(brand_pojo_list);</span>
 	}
 
 	@ApiOperation(value = &quot;Updates a Brand details record&quot;)
 	@RequestMapping(path = &quot;/api/brand/{id}&quot;, method = RequestMethod.PUT)
 	public void update(@PathVariable int id, @RequestBody BrandForm f) throws ApiException {
-<span class="nc" id="L62">		BrandCategoryPojo brand_pojo = DataConversionUtil.convert(f);</span>
-<span class="nc" id="L63">		brand_service.update(id, brand_pojo);</span>
-<span class="nc" id="L64">	}</span>
+<span class="nc" id="L71">		BrandCategoryPojo brand_pojo = DataConversionUtil.convert(f);</span>
+<span class="nc" id="L72">		brand_service.update(id, brand_pojo);</span>
+<span class="nc" id="L73">	}</span>
 	
 	
 	

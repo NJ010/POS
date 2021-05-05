@@ -32,8 +32,20 @@ public class DataConversionUtil {
 	//Convert to BrandPojo
 		public static BrandCategoryPojo convert(BrandForm d) {
 			BrandCategoryPojo p = new BrandCategoryPojo();
-			p.setBrand(d.getBrand().toLowerCase().replaceAll("\\s", ""));
-			p.setCategory(d.getCategory().toLowerCase().replaceAll("\\s", ""));
+			p.setBrand(d.getBrand().toLowerCase().trim());
+			p.setCategory(d.getCategory().toLowerCase().trim());
+			return p;
+		}
+
+		public static List<BrandCategoryPojo> convertList(List<BrandForm> list) {
+			List<BrandCategoryPojo> p = new ArrayList<BrandCategoryPojo>();
+			for (int i = 0; i < list.size(); i++) {
+				BrandCategoryPojo pojo=new BrandCategoryPojo();
+				pojo.setBrand(list.get(i).getBrand().toLowerCase().replaceAll("\\s", ""));
+				pojo.setCategory(list.get(i).getCategory().toLowerCase().replaceAll("\\s", ""));
+				p.add(pojo);
+			}
+
 			return p;
 		}
 

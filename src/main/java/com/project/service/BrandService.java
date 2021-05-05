@@ -1,10 +1,12 @@
 package com.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import com.project.model.TsvError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,27 @@ public class BrandService {
 		normalize(pojo);
 		check(pojo);
 		brand_dao.insert(pojo);
+	}
+
+	@Transactional
+	public List<TsvError> addList(List<BrandCategoryPojo> list) throws ApiException {
+		List<TsvError> errors= new ArrayList<TsvError>();
+		for (int i = 0; i < list.size(); i++) {
+			try{
+			normalize(list.get(i));
+			check(list.get(i));
+			brand_dao.insert(list.get(i));
+				TsvError error = new TsvError();
+				error.setLine(i+1);
+				error.setErrorMessage("Success");
+			}
+			catch (ApiException e){
+				TsvError error = new TsvError();
+				error.setLine(i+1);
+				error.setErrorMessage(e.getMessage());
+			}
+		}
+		return errors;
 	}
 	
 	
@@ -69,8 +92,8 @@ public class BrandService {
 	// to normalize according to requirements
 	public void normalize(BrandCategoryPojo pojo) {
 		
-		pojo.setBrand(pojo.getBrand().toLowerCase().replaceAll("\\s", ""));
-		pojo.setCategory(pojo.getCategory().toLowerCase().replaceAll("\\s", ""));
+		pojo.setBrand(pojo.getBrand().toLowerCase().trim());
+		pojo.setCategory(pojo.getCategory().toLowerCase().trim());
 		
 	}
 	

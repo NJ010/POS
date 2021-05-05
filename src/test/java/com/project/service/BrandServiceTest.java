@@ -103,8 +103,8 @@ public class BrandServiceTest extends AbstractUnit{
 
 	private BrandCategoryPojo getNewBrandPojo() {
 		BrandCategoryPojo p = new BrandCategoryPojo();
-		p.setBrand("Par  le  2");
-		p.setCategory("BiS c U it s2");
+		p.setBrand("Parle2");
+		p.setCategory("BiScUits2");
 		return p;
 	}
 

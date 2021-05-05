@@ -38,7 +38,7 @@ import com.project.pojo.ProductPojo;
 <span class="fc" id="L38">			check(pojo);</span>
 <span class="fc" id="L39">			order_item_dao.insert(pojo);</span>
 <span class="fc" id="L40">			updateInventory(pojo,0);</span>
-		}
+<span class="fc" id="L41">		}</span>
 <span class="fc" id="L42">		return order_id;</span>
 		
 	}
@@ -122,7 +122,7 @@ import com.project.pojo.ProductPojo;
 <span class="nc" id="L122">				update(item.getId(),p);</span>
 <span class="nc" id="L123">				return;</span>
 			}
-		}
+<span class="nc" id="L125">		}</span>
 <span class="nc" id="L126">		updateInventory(p,0);</span>
 <span class="nc" id="L127">		order_item_dao.insert(p);</span>
 		
@@ -138,14 +138,14 @@ import com.project.pojo.ProductPojo;
 		int quantityInInventory;
 		try {
 <span class="fc" id="L140">			quantityInInventory = inventory_service.getByProductId(pojo.getProduct().getId()).getQuantity() + old_qty;</span>
-<span class="pc" id="L141">		} catch (Exception e) {</span>
+<span class="nc" id="L141">		} catch (Exception e) {</span>
 <span class="nc" id="L142">			throw new ApiException(&quot;Inventory for this item does not exist &quot; + pojo.getProduct().getBarcode());</span>
-		}
+<span class="fc" id="L143">		}</span>
 
 <span class="pc bpc" id="L145" title="1 of 2 branches missed.">		if (quantity &gt; quantityInInventory) {</span>
 <span class="nc" id="L146">			throw new ApiException(</span>
-<span class="nc" id="L147">					&quot;Inventory does not contain this much quantity of product. Existing quantity in inventory: &quot;</span>
-<span class="nc" id="L148">							+ quantityInInventory);</span>
+					&quot;Inventory does not contain this much quantity of product. Existing quantity in inventory: &quot;
+							+ quantityInInventory);
 		}
 <span class="fc" id="L150">		InventoryPojo new_ip = new InventoryPojo();</span>
 <span class="fc" id="L151">		new_ip.setQuantity(quantityInInventory - quantity);</span>

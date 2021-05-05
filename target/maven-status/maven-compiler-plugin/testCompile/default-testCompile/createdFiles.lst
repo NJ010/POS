@@ -1,5 +1,8 @@
+com\project\service\OrderServiceTest.class
 com\project\utilities\DataConversionTest.class
 com\project\service\BrandServiceTest.class
+com\project\service\InventoryServiceTest.class
 com\project\spring\AbstractUnit.class
 com\project\spring\QaConfig.class
+com\project\service\ProductServiceTest.class
 com\project\spring\TestObjects.class
