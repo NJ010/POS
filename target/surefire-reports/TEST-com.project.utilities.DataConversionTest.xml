@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="18" failures="0" name="com.project.utilities.DataConversionTest" time="0.265" errors="0" skipped="0">
+<testsuite tests="18" failures="0" name="com.project.utilities.DataConversionTest" time="0.25" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_291\jre\bin"/>
@@ -69,17 +69,17 @@
   <testcase classname="com.project.utilities.DataConversionTest" name="testOrderItemstoInvoice" time="0.016"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testConvertOrderItemFormToPojo" time="0.015"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testConvertInventoryFormToPojo" time="0.016"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testOrderItemsFormtoPojo" time="0.015"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertProductPojoToData" time="0.016"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testOrderItemsFormtoPojo" time="0.016"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertProductPojoToData" time="0.015"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testListInventoryPojoToData" time="0.016"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertProductFormToPojo" time="0.015"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertInventoryReportList" time="0.032"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testListBrandPojoToData" time="0.015"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertProductFormToPojo" time="0"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertInventoryReportList" time="0.015"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testListBrandPojoToData" time="0.016"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testConvertBrandPojoToData" time="0.016"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testListProductPojoToData" time="0.015"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertOrderItemPojoToData" time="0"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertInventoryPojoToData" time="0"/>
-  <testcase classname="com.project.utilities.DataConversionTest" name="testOrderItemsPojotoData" time="0.016"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertOrderItemPojoToData" time="0.016"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testConvertInventoryPojoToData" time="0.016"/>
+  <testcase classname="com.project.utilities.DataConversionTest" name="testOrderItemsPojotoData" time="0"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testListOrderPojoToData" time="0.015"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testConvertSalesList" time="0.016"/>
   <testcase classname="com.project.utilities.DataConversionTest" name="testConvertOrderPojoToData" time="0.015"/>

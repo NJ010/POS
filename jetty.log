@@ -2239,3 +2239,31 @@ line 1:65: unexpected token: ,
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:782)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:918)
 	at java.lang.Thread.run(Thread.java:748)
+2021-05-06 20:11:56 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-05-06 20:11:56 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-05-06 20:11:56 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-05-06 20:11:56 INFO  FOUserAgent:83 - Rendered page #1.
+2021-05-06 21:32:50 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0])
+2021-05-06 21:32:55 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0])
+2021-05-06 21:33:04 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0])
+2021-05-06 21:33:06 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0])
+2021-05-06 21:33:07 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected close marker ']': expected '}' (for Object starting at [Source: (PushbackInputStream); line: 2, column: 3])
+ at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: java.util.ArrayList[0])
+2021-05-06 21:34:11 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Invalid numeric value: Leading zeroes not allowed
+ at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: java.util.ArrayList[1]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Invalid numeric value: Leading zeroes not allowed
+ at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: java.util.ArrayList[1])
+2021-05-06 21:34:27 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Invalid numeric value: Leading zeroes not allowed
+ at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: java.util.ArrayList[1]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Invalid numeric value: Leading zeroes not allowed
+ at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: java.util.ArrayList[1])
+2021-05-06 21:34:32 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected character ('g' (code 103)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 8, column: 17] (through reference chain: java.util.ArrayList[1]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('g' (code 103)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 8, column: 17] (through reference chain: java.util.ArrayList[1])

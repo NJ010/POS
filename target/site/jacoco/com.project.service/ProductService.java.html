@@ -9,6 +9,7 @@ import com.project.model.ProductForm;
 import com.project.model.TsvError;
 import com.project.pojo.BrandCategoryPojo;
 import com.project.utilities.DataConversionUtil;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ import com.project.utilities.BarcodeUtil;
 
 
 @Service
-<span class="fc" id="L23">public class ProductService {</span>
+<span class="fc" id="L24">public class ProductService {</span>
 	@Autowired
 	private ProductDao product_dao;
 
@@ -30,21 +31,20 @@ import com.project.utilities.BarcodeUtil;
 	/* Adding Product Details */
 	@Transactional(rollbackFor = ApiException.class)
 	public void add(ProductPojo p) throws ApiException {
-<span class="fc" id="L33">		check(p);</span>
-<span class="fc" id="L34">		normalize(p);</span>
-<span class="fc" id="L35">		p.setBarcode(BarcodeUtil.randomString(8));</span>
-<span class="fc" id="L36">		product_dao.insert(p);</span>
-<span class="fc" id="L37">	}</span>
+<span class="fc" id="L34">		check(p);</span>
+<span class="fc" id="L35">		normalize(p);</span>
+<span class="fc" id="L36">		p.setBarcode(BarcodeUtil.randomString(8));</span>
+<span class="fc" id="L37">		product_dao.insert(p);</span>
+<span class="fc" id="L38">	}</span>
 
 	@Transactional()
-	public List&lt;TsvError&gt; add(List&lt;ProductForm&gt; p) throws ApiException {
-<span class="nc" id="L41">		List&lt;TsvError&gt; errors= new ArrayList&lt;TsvError&gt;();</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">		for(int i=0;i&lt;p.size();i++){</span>
+	public List&lt;TsvError&gt; add(List&lt;ProductForm&gt; p) throws ApiException, ConstraintViolationException {
+<span class="nc" id="L42">		List&lt;TsvError&gt; errors= new ArrayList&lt;TsvError&gt;();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		for(int i=0;i&lt;p.size();i++){</span>
 		try{
-<span class="nc" id="L44">			p.get(i).setBrand(p.get(i).getBrand().toLowerCase().trim());</span>
-<span class="nc" id="L45">			p.get(i).setCategory(p.get(i).getCategory().toLowerCase().trim());</span>
-<span class="nc" id="L46">			BrandCategoryPojo brand_pojo = brand_service.getBrandPojo(p.get(i).getBrand(), p.get(i).getCategory());</span>
-
+<span class="nc" id="L45">			p.get(i).setBrand(p.get(i).getBrand().toLowerCase().trim());</span>
+<span class="nc" id="L46">			p.get(i).setCategory(p.get(i).getCategory().toLowerCase().trim());</span>
+<span class="nc" id="L47">			BrandCategoryPojo brand_pojo = brand_service.getBrandPojo(p.get(i).getBrand(), p.get(i).getCategory());</span>
 <span class="nc" id="L48">			ProductPojo pojo = DataConversionUtil.convert(brand_pojo,p.get(i));</span>
 <span class="nc" id="L49">			check(pojo);</span>
 <span class="nc" id="L50">			normalize(pojo);</span>

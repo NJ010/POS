@@ -1,9 +1,14 @@
 package com.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.project.model.InventoryForm;
+import com.project.model.TsvError;
+import com.project.pojo.ProductPojo;
+import com.project.utilities.DataConversionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +20,9 @@ public class InventoryService {
 
 	@Autowired
 	private InventoryDao inventory_dao;
+
+	@Autowired
+	private ProductService product_service;
 	
 	// Adding Inventory 
 	@Transactional
@@ -27,6 +35,38 @@ public class InventoryService {
 		else {
 			inventory_dao.insert(pojo);
 		}
+	}
+
+	@Transactional
+	public List<TsvError> add(List<InventoryForm> list) throws ApiException {
+		List<TsvError> errors= new ArrayList<TsvError>();
+
+		for (int i = 0; i < list.size(); i++) {
+			try{
+				ProductPojo product = product_service.get(list.get(i).getBarcode());
+				InventoryPojo inventory_pojo = DataConversionUtil.convert(list.get(i),product);
+				check(inventory_pojo);
+				List<InventoryPojo> pojo_list= checkIfBarcodePresent(inventory_pojo);
+				if(pojo_list.size()>0) {
+					inventory_dao.updatequantity(pojo_list.get(0).getId(), inventory_pojo);
+				}
+				else {
+					inventory_dao.insert(inventory_pojo);
+				}
+				TsvError error = new TsvError();
+				error.setLine(i+1);
+				error.setErrorMessage("Success");
+				errors.add(error);
+			}
+			catch (ApiException e){
+
+				TsvError error = new TsvError();
+				error.setLine(i+1);
+				error.setErrorMessage(e.getMessage());
+				errors.add(error);
+			}
+		}
+		return errors;
 	}
 
 	// Deletion of inventory by id 

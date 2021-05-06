@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <brands>
     <brand_item>
+        <brand>1</brand>
+        <category>1</category>
+        <id>12</id>
+    </brand_item>
+    <brand_item>
+        <brand>1234</brand>
+        <category>123456</category>
+        <id>5</id>
+    </brand_item>
+    <brand_item>
+        <brand>12klb</brand>
+        <category>,mfbkm</category>
+        <id>9</id>
+    </brand_item>
+    <brand_item>
         <brand>abc</brand>
         <category>abc</category>
         <id>1</id>
+    </brand_item>
+    <brand_item>
+        <brand>abc</brand>
+        <category>dsbsb</category>
+        <id>6</id>
     </brand_item>
     <brand_item>
         <brand>brand1</brand>
@@ -16,8 +36,28 @@
         <id>3</id>
     </brand_item>
     <brand_item>
+        <brand>brand23</brand>
+        <category>category43</category>
+        <id>8</id>
+    </brand_item>
+    <brand_item>
         <brand>brand3</brand>
         <category>category3</category>
         <id>4</id>
+    </brand_item>
+    <brand_item>
+        <brand>string</brand>
+        <category>string</category>
+        <id>7</id>
+    </brand_item>
+    <brand_item>
+        <brand>string1</brand>
+        <category>string1</category>
+        <id>11</id>
+    </brand_item>
+    <brand_item>
+        <brand>string11</brand>
+        <category>string11</category>
+        <id>10</id>
     </brand_item>
 </brands>

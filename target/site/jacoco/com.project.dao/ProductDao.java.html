@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.project.service.ApiException;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
@@ -16,70 +17,79 @@ import com.project.pojo.ProductPojo;
 
 
 @Repository
-<span class="fc" id="L19">public class ProductDao {</span>
+<span class="fc" id="L20">public class ProductDao {</span>
 	
 	@PersistenceContext
 	EntityManager em;
 	
-<span class="fc" id="L24">	private static String select_all = &quot;select p from ProductPojo p&quot;;</span>
-<span class="fc" id="L25">	private static String select_barcode = &quot;select p from ProductPojo p where barcode=:barcode&quot;;</span>
-	
+<span class="fc" id="L25">	private static String select_all = &quot;select p from ProductPojo p&quot;;</span>
+<span class="fc" id="L26">	private static String select_barcode = &quot;select p from ProductPojo p where barcode=:barcode&quot;;</span>
+<span class="fc" id="L27">	private static String select_duplicate = &quot;select p from ProductPojo p where name =:name and mrp =:mrp and brandcategory=:pojo&quot;;</span>
+
+
 	//Insert product 
-	public void insert(ProductPojo p) throws ApiException{
-		try {
-<span class="fc" id="L30">			em.persist(p);</span>
-<span class="nc" id="L31">		} catch (ConstraintViolationException e) {</span>
-<span class="nc" id="L32">			throw new ApiException(&quot;Duplicate entry&quot;);</span>
-<span class="fc" id="L33">		}</span>
-<span class="fc" id="L34">	}</span>
+	public void insert(ProductPojo pojo) throws ConstraintViolationException,ApiException{
+<span class="fc" id="L32">		List&lt;ProductPojo&gt; p= em.createQuery(select_duplicate)</span>
+<span class="fc" id="L33">				.setParameter(&quot;pojo&quot;,pojo.getBrandCategory())</span>
+<span class="fc" id="L34">				.setParameter(&quot;mrp&quot;, pojo.getMrp())</span>
+<span class="fc" id="L35">				.setParameter(&quot;name&quot;, pojo.getName()).getResultList();</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">		if(p.size()&gt;0){</span>
+<span class="nc" id="L37">			throw new ApiException(&quot;Duplicates&quot;);</span>
+
+		}
+		else {
+<span class="fc" id="L41">			em.persist(pojo);</span>
+		}
+
+<span class="fc" id="L44">	}</span>
 	
 	//Delete Product 
 	public void delete(int id) {
-<span class="fc" id="L38">		ProductPojo p = em.find(ProductPojo.class, id);</span>
-<span class="fc" id="L39">		em.remove(p);</span>
-<span class="fc" id="L40">	}</span>
+<span class="fc" id="L48">		ProductPojo p = em.find(ProductPojo.class, id);</span>
+<span class="fc" id="L49">		em.remove(p);</span>
+<span class="fc" id="L50">	}</span>
 	
 	//Select product 
 	public ProductPojo select(int id) {
-<span class="fc" id="L44">		return em.find(ProductPojo.class, id);</span>
+<span class="fc" id="L54">		return em.find(ProductPojo.class, id);</span>
 	}
 	
 	//Select product by barcode
 	public ProductPojo select(String barcode) {
-<span class="fc" id="L49">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_barcode);</span>
-<span class="fc" id="L50">		query.setParameter(&quot;barcode&quot;, barcode);</span>
-<span class="fc" id="L51">		List&lt;ProductPojo&gt; lis = query.getResultList();</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">		if(lis.size()&gt;0) {</span>
-<span class="fc" id="L53">			ProductPojo p = lis.get(0);</span>
-<span class="fc" id="L54">			return p;</span>
+<span class="fc" id="L59">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_barcode);</span>
+<span class="fc" id="L60">		query.setParameter(&quot;barcode&quot;, barcode);</span>
+<span class="fc" id="L61">		List&lt;ProductPojo&gt; lis = query.getResultList();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		if(lis.size()&gt;0) {</span>
+<span class="fc" id="L63">			ProductPojo p = lis.get(0);</span>
+<span class="fc" id="L64">			return p;</span>
 		}
 		else {
-<span class="fc" id="L57">			return null;</span>
+<span class="fc" id="L67">			return null;</span>
 		}
 	}
 	
 	//Select all products 
 	public List&lt;ProductPojo&gt; selectAll() {
-<span class="fc" id="L63">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_all);</span>
-<span class="fc" id="L64">		return query.getResultList();	</span>
+<span class="fc" id="L73">		TypedQuery&lt;ProductPojo&gt; query = getQuery(select_all);</span>
+<span class="fc" id="L74">		return query.getResultList();	</span>
 	}
 	
 	
 	public void update(int id,ProductPojo pojo) {
-<span class="nc" id="L69">		String update_query =&quot;update ProductPojo set brandcategory=:brandid , mrp=:mrp,barcode =:barcode,name=:name  where id = :id&quot;;</span>
-<span class="nc" id="L70">		em.createQuery(update_query)</span>
-<span class="nc" id="L71">		.setParameter(&quot;id&quot;, id)</span>
-<span class="nc" id="L72">		.setParameter(&quot;brandid&quot;,pojo.getBrandCategory())</span>
-<span class="nc" id="L73">		.setParameter(&quot;mrp&quot;, pojo.getMrp())</span>
-<span class="nc" id="L74">		.setParameter(&quot;barcode&quot;, pojo.getBarcode())</span>
-<span class="nc" id="L75">		.setParameter(&quot;name&quot;, pojo.getName())</span>
-<span class="nc" id="L76">		.executeUpdate();</span>
-<span class="nc" id="L77">		return;</span>
+<span class="nc" id="L79">		String update_query =&quot;update ProductPojo set brandcategory=:brandid , mrp=:mrp,barcode =:barcode,name=:name  where id = :id&quot;;</span>
+<span class="nc" id="L80">		em.createQuery(update_query)</span>
+<span class="nc" id="L81">		.setParameter(&quot;id&quot;, id)</span>
+<span class="nc" id="L82">		.setParameter(&quot;brandid&quot;,pojo.getBrandCategory())</span>
+<span class="nc" id="L83">		.setParameter(&quot;mrp&quot;, pojo.getMrp())</span>
+<span class="nc" id="L84">		.setParameter(&quot;barcode&quot;, pojo.getBarcode())</span>
+<span class="nc" id="L85">		.setParameter(&quot;name&quot;, pojo.getName())</span>
+<span class="nc" id="L86">		.executeUpdate();</span>
+<span class="nc" id="L87">		return;</span>
 	}
 	
 	
 	private TypedQuery&lt;ProductPojo&gt; getQuery(String jpql) {
-<span class="fc" id="L82">		return em.createQuery(jpql,ProductPojo.class);</span>
+<span class="fc" id="L92">		return em.createQuery(jpql,ProductPojo.class);</span>
 	}
 
 }

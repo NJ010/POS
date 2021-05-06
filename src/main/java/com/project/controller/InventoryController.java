@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.util.List;
 
+import com.project.model.TsvError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +38,13 @@ public class InventoryController extends ExceptionalHandler{
 		ProductPojo product = product_service.get(userform.getBarcode());
 		InventoryPojo inventory_pojo = DataConversionUtil.convert(userform,product);
 		inventory_service.add(inventory_pojo);
+	}
+
+	@ApiOperation(value = "Adds Inventory from TSV")
+	@RequestMapping(path = "/api/inventory/list", method = RequestMethod.POST)
+	public List<TsvError> add(@RequestBody List<InventoryForm> list) throws ApiException {
+
+		return inventory_service.add(list);
 	}
 
 	@ApiOperation(value = "Deletes an Inventory record")

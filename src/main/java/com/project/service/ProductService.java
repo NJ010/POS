@@ -73,14 +73,14 @@ public class ProductService {
 	}
 
 	/* Fetching of product details by id */
-	@Transactional(rollbackFor = ApiException.class)
+	@Transactional()
 	public ProductPojo get(int id) throws ApiException {
 		ProductPojo p = checkIfExists(id);
 		return p;
 	}
 
 	/* Fetching of product details by barcode */
-	@Transactional(rollbackFor = ApiException.class)
+	@Transactional()
 	public ProductPojo get(String barcode) throws ApiException {
 		ProductPojo p = checkIfExists(barcode);
 		return p;
