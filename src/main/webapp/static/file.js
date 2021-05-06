@@ -158,7 +158,7 @@ function ajaxQuery(url, type, data, successFunction,errorFunction) {
        	'Content-Type': 'application/json'
        },
 	   success: function(response) {
-	   		successFunction(response.responseText);
+	   		successFunction(response);
 	   },
 	   error: function(response){
 	   		errorFunction(response.responseText);
@@ -167,6 +167,7 @@ function ajaxQuery(url, type, data, successFunction,errorFunction) {
 }
 
 function ajaxQueryRecur(url, type, data, successFunction,recurFunction) {
+    console.log(url);
 	$.ajax({
 	   url: url,
 	   type: type,
@@ -175,11 +176,17 @@ function ajaxQueryRecur(url, type, data, successFunction,recurFunction) {
        	'Content-Type': 'application/json'
        },
 	   success: function(response) {
-            console.log(response);
+	   console.log(response);
+           for(var i=0;i<response.length;i++){
+           console.log(response[i]);
+               var error_obj = response[i];
+               errorData.push(error_obj);
+           }
+           console.log(errorData);
 	   },
 	   error: function(response){
 	          console.log(response);
-			  var error_obj = JSON.parse(response.responseText);
+			  var error_obj = JSON.parse(response);
 			  var error = "For " + data;
 				console.log(error_obj.message);
 				error_obj.message = error + " " + error_obj.message;

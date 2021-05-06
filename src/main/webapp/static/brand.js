@@ -52,6 +52,7 @@ function updateBrand(event){
 
 function getBrandList(){
 	var url = getBrandUrl();
+	console.log(url);
 	ajaxQuery(url,'GET','',displayBrandList,handleAjaxError);
 }
 
@@ -63,10 +64,11 @@ function deleteBrand(id){
 //UI DISPLAY METHODS
 
 function displayBrandList(data){
-	console.log('Printing Brand data');
+    console.log(data);
 	var $tbody = $('#brand-table').find('tbody');
 	$tbody.empty();
 	for(var i in data){
+
 		var e = data[i];
 		var buttonHtml =  '<button style="padding: 0;border: none;background: none;" onclick="displayEditBrand(' + e.id + ')"><span class="material-icons" style="color:#CCCC00">edit</span></button>'
 		var row = '<tr>'

@@ -4,6 +4,12 @@ function getProductDetailsUrl(){
 	return baseUrl + "/api/product";
 }
 
+function getProductDetailsListUrl(){
+	var baseUrl = $("meta[name=baseUrl]").attr("content");
+	console.log(baseUrl);
+	return baseUrl + "/api/product/list";
+}
+
 //BUTTON ACTIONS
 function addProductDetails(event){
 
@@ -123,24 +129,13 @@ function readFileDataCallback(results){
 function uploadRowsProductDetails(){
 	updateUploadDialog();
 	$("#download-errors-productdetails").prop("disabled",false);
-	//If everything processed then return
-	if(rowsProcessed==fileData.length){
-		getProductDetailsList();
-		return;
-	}
-	if(rowsProcessed>5000){
-		toastr.error("Data present exceeds LIMIT");
-		return;
-	}
 
-	//Process next row
-	var row = fileData[rowsProcessed];
+	var row = fileData;
 	console.log(row);
-	rowsProcessed++;
 
 	var json = JSON.stringify(row);
 
-	var url = getProductDetailsUrl();
+	var url = getProductDetailsListUrl();
 
 	ajaxQueryRecur(url,'POST',json,uploadRowsProductDetails,uploadRowsProductDetails);
 

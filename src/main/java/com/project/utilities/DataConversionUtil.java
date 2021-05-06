@@ -69,7 +69,18 @@ public class DataConversionUtil {
 			return p;
 		}
 
-		//Convert to Product Details Data
+		public static List<ProductPojo> convertProduct(List<ProductForm> list){
+			List<ProductPojo> pojo=new ArrayList<ProductPojo>();
+			for(int i=0;i<list.size();i++){
+				ProductPojo p = new ProductPojo();
+				p.setName(list.get(i).getName());
+				p.setMrp(list.get(i).getMrp());
+
+				pojo.add(p);
+			}
+			return pojo;
+		}
+	//Convert to Product Details Data
 		public static ProductData convert(ProductPojo p) {
 			ProductData d = new ProductData();
 			d.setId(p.getId());

@@ -19,32 +19,37 @@ public class BrandService {
 	
 	@Autowired
 	private BrandDao brand_dao;
-	
-	@Transactional
+
+	@Transactional(rollbackOn = ApiException.class)
 	public void add(BrandCategoryPojo pojo) throws ApiException {
 		normalize(pojo);
 		check(pojo);
 		brand_dao.insert(pojo);
 	}
 
-	@Transactional
+	@Transactional(rollbackOn = ApiException.class)
 	public List<TsvError> addList(List<BrandCategoryPojo> list) throws ApiException {
 		List<TsvError> errors= new ArrayList<TsvError>();
+
 		for (int i = 0; i < list.size(); i++) {
 			try{
-			normalize(list.get(i));
-			check(list.get(i));
-			brand_dao.insert(list.get(i));
+				normalize(list.get(i));
+				check(list.get(i));
+				brand_dao.insert(list.get(i));
 				TsvError error = new TsvError();
 				error.setLine(i+1);
 				error.setErrorMessage("Success");
+				errors.add(error);
 			}
 			catch (ApiException e){
+
 				TsvError error = new TsvError();
 				error.setLine(i+1);
 				error.setErrorMessage(e.getMessage());
+				errors.add(error);
 			}
 		}
+
 		return errors;
 	}
 	
@@ -63,7 +68,7 @@ public class BrandService {
 	}
 	
 	//update brand and category
-	@Transactional(rollbackOn = ApiException.class)
+	@Transactional()
 	public void update(int id, BrandCategoryPojo pojo) throws ApiException {
 		check(pojo);
 		normalize(pojo);
@@ -74,7 +79,7 @@ public class BrandService {
 	}
 	
 	/* Getting a BrandPojo with particular brand and category */
-	@Transactional(rollbackOn = ApiException.class)
+	@Transactional()
 	public BrandCategoryPojo getBrandPojo(String brand, String category) throws ApiException {
 		
 		List<BrandCategoryPojo> brand_list = brand_dao.selectAllBrandCategory(brand, category);

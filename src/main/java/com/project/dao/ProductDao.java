@@ -6,6 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.project.service.ApiException;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import com.project.pojo.InventoryPojo;
@@ -20,10 +24,23 @@ public class ProductDao {
 	
 	private static String select_all = "select p from ProductPojo p";
 	private static String select_barcode = "select p from ProductPojo p where barcode=:barcode";
-	
+	private static String select_duplicate = "select p from ProductPojo p where name =:name and mrp =:mrp and brandcategory=:pojo";
+
+
 	//Insert product 
-	public void insert(ProductPojo p) {
-		em.persist(p);
+	public void insert(ProductPojo pojo) throws ConstraintViolationException,ApiException{
+		List<ProductPojo> p= em.createQuery(select_duplicate)
+				.setParameter("pojo",pojo.getBrandCategory())
+				.setParameter("mrp", pojo.getMrp())
+				.setParameter("name", pojo.getName()).getResultList();
+		if(p.size()>0){
+			throw new ApiException("Duplicates");
+
+		}
+		else {
+			em.persist(pojo);
+		}
+
 	}
 	
 	//Delete Product 

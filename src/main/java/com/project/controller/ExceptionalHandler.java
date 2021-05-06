@@ -18,12 +18,12 @@ public class ExceptionalHandler {
 		ApiError error= new ApiError(404,exception.getMessage(),request.getServletPath());
 		return error;
 	}
-	
-	
+
+
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ApiError HandleSuchElementException(ConstraintViolationException exception,HttpServletRequest request) {
-		ApiError error= new ApiError(404,"Duplicate Entry",request.getServletPath());
+		ApiError error= new ApiError(404,"Duplicate ntry",request.getServletPath());
 		return error;
 	}
 	

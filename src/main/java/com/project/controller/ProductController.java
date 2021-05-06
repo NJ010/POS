@@ -1,7 +1,9 @@
 package com.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.project.model.TsvError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,12 +37,19 @@ public class ProductController extends ExceptionalHandler{
 	@ApiOperation(value = "Adds ProductDetails")
 	@RequestMapping(path = "/api/product", method = RequestMethod.POST)
 	public void add(@RequestBody ProductForm userform) throws ApiException {
-		userform.setBrand(userform.getBrand().toLowerCase().replaceAll("\\s", ""));
-		userform.setCategory(userform.getCategory().toLowerCase().replaceAll("\\s", ""));
+		userform.setBrand(userform.getBrand().toLowerCase().trim());
+		userform.setCategory(userform.getCategory().toLowerCase().trim());
 		BrandCategoryPojo brand_pojo = brand_service.getBrandPojo(userform.getBrand(), userform.getCategory());
 		
 		ProductPojo p = DataConversionUtil.convert(brand_pojo,userform);
 		product_service.add(p);
+	}
+	@ApiOperation(value = "Adds ProductDetails")
+	@RequestMapping(path = "/api/product/list", method = RequestMethod.POST)
+	public List<TsvError> add(@RequestBody List<ProductForm> list) throws ApiException {
+		List<TsvError> list_errors= new ArrayList<TsvError>();
+		list_errors=product_service.add(list);
+		return list_errors;
 	}
 
 	@ApiOperation(value = "Deletes a ProductDetails record")

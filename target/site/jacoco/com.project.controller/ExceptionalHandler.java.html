@@ -18,12 +18,12 @@ import com.project.service.ApiException;
 <span class="nc" id="L18">		ApiError error= new ApiError(404,exception.getMessage(),request.getServletPath());</span>
 <span class="nc" id="L19">		return error;</span>
 	}
-	
-	
+
+
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ApiError HandleSuchElementException(ConstraintViolationException exception,HttpServletRequest request) {
-<span class="nc" id="L26">		ApiError error= new ApiError(404,&quot;Duplicate Entry&quot;,request.getServletPath());</span>
+<span class="nc" id="L26">		ApiError error= new ApiError(404,&quot;Duplicate ntry&quot;,request.getServletPath());</span>
 <span class="nc" id="L27">		return error;</span>
 	}
 	
