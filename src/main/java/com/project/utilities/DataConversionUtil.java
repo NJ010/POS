@@ -41,8 +41,8 @@ public class DataConversionUtil {
 			List<BrandCategoryPojo> p = new ArrayList<BrandCategoryPojo>();
 			for (int i = 0; i < list.size(); i++) {
 				BrandCategoryPojo pojo=new BrandCategoryPojo();
-				pojo.setBrand(list.get(i).getBrand().toLowerCase().replaceAll("\\s", ""));
-				pojo.setCategory(list.get(i).getCategory().toLowerCase().replaceAll("\\s", ""));
+				pojo.setBrand(list.get(i).getBrand().toLowerCase().trim());
+				pojo.setCategory(list.get(i).getCategory().toLowerCase().trim());
 				p.add(pojo);
 			}
 
@@ -52,16 +52,16 @@ public class DataConversionUtil {
 		//Convert to Brand Data
 		public static BrandData convert(BrandCategoryPojo p) {
 			BrandData d = new BrandData();
-			d.setBrand(p.getBrand().toLowerCase().replaceAll("\\s", ""));
-			d.setCategory(p.getCategory().toLowerCase().replaceAll("\\s", ""));
+			d.setBrand(p.getBrand().toLowerCase().trim());
+			d.setCategory(p.getCategory().toLowerCase().trim());
 			d.setId(p.getId());
 			return d;
 		}
 
 		//Convert to Product Details Pojo
 		public static ProductPojo convert(BrandCategoryPojo brand_pojo, ProductForm f) throws ApiException {
-			brand_pojo.setBrand(brand_pojo.getBrand().toLowerCase().replaceAll("\\s", ""));
-			brand_pojo.setCategory(brand_pojo.getCategory().toLowerCase().replaceAll("\\s", ""));
+			brand_pojo.setBrand(brand_pojo.getBrand().toLowerCase().trim());
+			brand_pojo.setCategory(brand_pojo.getCategory().toLowerCase().trim());
 			ProductPojo p = new ProductPojo();
 			p.setName(f.getName());
 			p.setMrp(f.getMrp());
@@ -84,11 +84,11 @@ public class DataConversionUtil {
 		public static ProductData convert(ProductPojo p) {
 			ProductData d = new ProductData();
 			d.setId(p.getId());
-			d.setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll("\\s", ""));
-			d.setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll("\\s", ""));
+			d.setBrand(p.getBrandCategory().getBrand().toLowerCase().trim());
+			d.setCategory(p.getBrandCategory().getCategory().toLowerCase().trim());
 			d.setMrp(p.getMrp());
-			d.setName(p.getName().toLowerCase().replaceAll("\\s", ""));
-			d.setBarcode(p.getBarcode().toLowerCase().replaceAll("\\s", ""));
+			d.setName(p.getName().toLowerCase().trim());
+			d.setBarcode(p.getBarcode().toLowerCase().trim());
 			return d;
 		}
 

@@ -137,9 +137,9 @@ public class ProductService {
 
 	/* Normalize */
 	protected void normalize(ProductPojo p) {
-		p.setName(p.getName().toLowerCase().replaceAll("\\s", ""));
-		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll("\\s", ""));
-		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll("\\s", ""));
+		p.setName(p.getName().toLowerCase().trim());
+		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().trim());
+		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().trim());
 	}
 
 	/* Validate */
