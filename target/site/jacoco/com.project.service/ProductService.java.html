@@ -73,14 +73,14 @@ import com.project.utilities.BarcodeUtil;
 <span class="fc" id="L73">	}</span>
 
 	/* Fetching of product details by id */
-	@Transactional(rollbackFor = ApiException.class)
+	@Transactional()
 	public ProductPojo get(int id) throws ApiException {
 <span class="fc" id="L78">		ProductPojo p = checkIfExists(id);</span>
 <span class="fc" id="L79">		return p;</span>
 	}
 
 	/* Fetching of product details by barcode */
-	@Transactional(rollbackFor = ApiException.class)
+	@Transactional()
 	public ProductPojo get(String barcode) throws ApiException {
 <span class="fc" id="L85">		ProductPojo p = checkIfExists(barcode);</span>
 <span class="fc" id="L86">		return p;</span>
@@ -137,9 +137,9 @@ import com.project.utilities.BarcodeUtil;
 
 	/* Normalize */
 	protected void normalize(ProductPojo p) {
-<span class="fc" id="L140">		p.setName(p.getName().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L141">		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L142">		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L140">		p.setName(p.getName().toLowerCase().trim());</span>
+<span class="fc" id="L141">		p.getBrandCategory().setBrand(p.getBrandCategory().getBrand().trim());</span>
+<span class="fc" id="L142">		p.getBrandCategory().setCategory(p.getBrandCategory().getCategory().toLowerCase().trim());</span>
 <span class="fc" id="L143">	}</span>
 
 	/* Validate */

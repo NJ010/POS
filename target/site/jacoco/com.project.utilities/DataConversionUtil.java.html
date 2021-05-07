@@ -41,8 +41,8 @@ import com.project.service.ApiException;
 <span class="nc" id="L41">			List&lt;BrandCategoryPojo&gt; p = new ArrayList&lt;BrandCategoryPojo&gt;();</span>
 <span class="nc bnc" id="L42" title="All 2 branches missed.">			for (int i = 0; i &lt; list.size(); i++) {</span>
 <span class="nc" id="L43">				BrandCategoryPojo pojo=new BrandCategoryPojo();</span>
-<span class="nc" id="L44">				pojo.setBrand(list.get(i).getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="nc" id="L45">				pojo.setCategory(list.get(i).getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="nc" id="L44">				pojo.setBrand(list.get(i).getBrand().toLowerCase().trim());</span>
+<span class="nc" id="L45">				pojo.setCategory(list.get(i).getCategory().toLowerCase().trim());</span>
 <span class="nc" id="L46">				p.add(pojo);</span>
 			}
 
@@ -52,16 +52,16 @@ import com.project.service.ApiException;
 		//Convert to Brand Data
 		public static BrandData convert(BrandCategoryPojo p) {
 <span class="fc" id="L54">			BrandData d = new BrandData();</span>
-<span class="fc" id="L55">			d.setBrand(p.getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L56">			d.setCategory(p.getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L55">			d.setBrand(p.getBrand().toLowerCase().trim());</span>
+<span class="fc" id="L56">			d.setCategory(p.getCategory().toLowerCase().trim());</span>
 <span class="fc" id="L57">			d.setId(p.getId());</span>
 <span class="fc" id="L58">			return d;</span>
 		}
 
 		//Convert to Product Details Pojo
 		public static ProductPojo convert(BrandCategoryPojo brand_pojo, ProductForm f) throws ApiException {
-<span class="fc" id="L63">			brand_pojo.setBrand(brand_pojo.getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L64">			brand_pojo.setCategory(brand_pojo.getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L63">			brand_pojo.setBrand(brand_pojo.getBrand().toLowerCase().trim());</span>
+<span class="fc" id="L64">			brand_pojo.setCategory(brand_pojo.getCategory().toLowerCase().trim());</span>
 <span class="fc" id="L65">			ProductPojo p = new ProductPojo();</span>
 <span class="fc" id="L66">			p.setName(f.getName());</span>
 <span class="fc" id="L67">			p.setMrp(f.getMrp());</span>
@@ -84,11 +84,11 @@ import com.project.service.ApiException;
 		public static ProductData convert(ProductPojo p) {
 <span class="fc" id="L85">			ProductData d = new ProductData();</span>
 <span class="fc" id="L86">			d.setId(p.getId());</span>
-<span class="fc" id="L87">			d.setBrand(p.getBrandCategory().getBrand().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L88">			d.setCategory(p.getBrandCategory().getCategory().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L87">			d.setBrand(p.getBrandCategory().getBrand().toLowerCase().trim());</span>
+<span class="fc" id="L88">			d.setCategory(p.getBrandCategory().getCategory().toLowerCase().trim());</span>
 <span class="fc" id="L89">			d.setMrp(p.getMrp());</span>
-<span class="fc" id="L90">			d.setName(p.getName().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
-<span class="fc" id="L91">			d.setBarcode(p.getBarcode().toLowerCase().replaceAll(&quot;\\s&quot;, &quot;&quot;));</span>
+<span class="fc" id="L90">			d.setName(p.getName().toLowerCase().trim());</span>
+<span class="fc" id="L91">			d.setBarcode(p.getBarcode().toLowerCase().trim());</span>
 <span class="fc" id="L92">			return d;</span>
 		}
 

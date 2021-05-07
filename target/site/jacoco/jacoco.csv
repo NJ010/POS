@@ -3,7 +3,7 @@ POS,com.project.controller,ExceptionalHandler,21,3,0,0,4,1,2,1,2,1
 POS,com.project.controller,BrandController,42,3,0,0,13,1,5,1,5,1
 POS,com.project.controller,OrderController,91,3,0,0,24,1,9,1,9,1
 POS,com.project.controller,AbstractUIController,13,3,0,0,3,1,1,1,1,1
-POS,com.project.controller,InventoryController,51,3,0,0,14,1,5,1,5,1
+POS,com.project.controller,InventoryController,56,3,0,0,15,1,6,1,6,1
 POS,com.project.controller,UIController,24,3,0,0,6,1,6,1,6,1
 POS,com.project.controller,InvoiceController,32,3,0,0,8,1,2,1,2,1
 POS,com.project.controller,ProductController,78,3,0,0,19,1,6,1,6,1
@@ -39,7 +39,7 @@ POS,com.project.pojo,OrderPojo,4,13,0,0,2,5,1,4,1,4
 POS,com.project.pojo,BrandCategoryPojo,0,24,0,0,0,10,0,7,0,7
 POS,com.project.pojo,ProductPojo,4,34,0,0,2,14,1,10,1,10
 POS,com.project.utilities,BarcodeUtil,3,31,0,2,1,6,1,3,1,2
-POS,com.project.utilities,DataConversionUtil,83,530,5,19,15,118,6,27,3,18
+POS,com.project.utilities,DataConversionUtil,79,514,5,19,15,118,6,27,3,18
 POS,com.project.utilities,PdfConversionUtil,69,0,0,0,18,0,3,0,3,0
 POS,com.project.spring,ControllerConfig,4,112,0,0,2,25,1,7,1,7
 POS,com.project.spring,SpringSecurityInitializer,3,0,0,0,1,0,1,0,1,0
@@ -47,9 +47,9 @@ POS,com.project.spring,SpringConfig,3,0,0,0,1,0,1,0,1,0
 POS,com.project.spring,SecurityConfig,0,43,0,0,0,6,0,4,0,4
 POS,com.project.spring,WebInitializer,20,0,0,0,4,0,4,0,4,0
 POS,com.project.spring,DBConfig,0,108,0,0,0,28,0,4,0,4
-POS,com.project.service,ProductService,167,125,5,7,36,29,6,13,3,10
+POS,com.project.service,ProductService,167,118,5,7,36,29,6,13,3,10
 POS,com.project.service,BrandService,118,90,5,7,26,24,6,10,2,8
-POS,com.project.service,InventoryService,15,109,2,8,2,30,2,13,0,10
+POS,com.project.service,InventoryService,104,109,6,8,22,30,5,13,1,10
 POS,com.project.service,OrderService,137,197,10,10,25,50,9,15,2,12
 POS,com.project.service,ReportService,366,3,30,0,68,1,29,1,14,1
 POS,com.project.service,ApiException,0,4,0,0,0,2,0,1,0,1

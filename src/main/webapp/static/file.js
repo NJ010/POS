@@ -99,7 +99,10 @@ function checkHeader(file,header_list,callback) {
 					readFileData(file,callback);
 				}
 				else{
-					toastr.error("Improper File Format Try again with different file");
+				    new Toast({message: 'Improper File Format',
+				    type: 'danger'
+				    });
+
 				}
 
     }
@@ -129,9 +132,13 @@ function writeFileData(arr){
 }
 
 function handleAjaxError(response) {
-	console.log(response.responseText);
-	var response = JSON.parse(response.responseText);
-	toastr.error(response.message);
+	console.log(response);
+	var response = JSON.parse(response);
+	new Toast({
+	          message: response.message,
+    		  type: 'danger'
+    	});
+
 }
 
 
@@ -190,7 +197,11 @@ function ajaxQueryRecur(url, type, data, successFunction,recurFunction) {
 			  var error = "For " + data;
 				console.log(error_obj.message);
 				error_obj.message = error + " " + error_obj.message;
-				toastr.error(error_obj.message);
+				new Toast({
+                	          message: error_obj.message,
+                    		  type: 'danger'
+                    	});
+
 	   		errorData.push(error_obj);
 
 	   }

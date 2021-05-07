@@ -129,8 +129,8 @@ function writeFileData(arr){
 }
 
 function handleAjaxError(response) {
-	console.log(response.responseText);
-	var response = JSON.parse(response.responseText);
+	console.log(response);
+	var response = JSON.parse(response);
 	toastr.error(response.message);
 }
 

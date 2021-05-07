@@ -74,6 +74,7 @@ function getSalesReport(){
 	      	link.click();
 		   },
 		   error: function(response){
+
 		   		toastr.error("No sales data was found within given date range and brand category pair");
 		   }
 		});

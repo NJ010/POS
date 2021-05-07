@@ -4,6 +4,12 @@ function getInventoryUrl(){
 	return baseUrl + "/api/inventory";
 }
 
+function getInventoryUrlList(){
+	var baseUrl = $("meta[name=baseUrl]").attr("content");
+	console.log(baseUrl);
+	return baseUrl + "/api/inventory/list";
+}
+
 //BUTTON ACTIONS
 function addInventory(event){
 
@@ -74,21 +80,17 @@ function readFileDataCallback(results){
 function uploadRowsInventory(){
 	updateUploadDialog();
 	$("#download-errors-inventory").prop("disabled",false);
-	//If everything processed then return
-	if(rowsProcessed==fileData.length){
-		getInventoryList();
-		return;
-	}
+
 	
 
 	//Process next row
-	var row = fileData[rowsProcessed];
+	var row = fileData;
 	console.log(row);
 	rowsProcessed++;
 
 	var json = JSON.stringify(row);
 
-	var url = getInventoryUrl();
+	var url = getInventoryUrlList();
 
 	ajaxQueryRecur(url,'POST',json,uploadRowsInventory,uploadRowsInventory);
 

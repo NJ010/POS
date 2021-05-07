@@ -157,11 +157,18 @@ function updateFileName(){
 function validateBrand(json) {
 	json = JSON.parse(json);
 	if(isBlank(json.brand)) {
-		toastr.error("Brand field must not be empty");
+	    new Toast({
+                        	          message: "Brand field must not be empty",
+                            		  type: 'danger'
+                            	});
+
 		return false;
 	}
 	if(isBlank(json.category)) {
-		toastr.error("Category field must not be empty");
+	new Toast({
+                            	          message: "Category field must not be empty",
+                                		  type: 'danger'
+                                	});
 		return false;
 	}
 	return true;
